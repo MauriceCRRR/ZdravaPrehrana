@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|c:\\users\\maurice\\desktop\\zravapreh\\zdravaprehrana\\zdravaprehrana\\zdravaprehrana.tests\\upravljalecreceptovtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|solutionrelative:zdravaprehrana.tests\\upravljalecreceptovtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|c:\\users\\maurice\\desktop\\zravapreh\\zdravaprehrana\\zdravaprehrana\\zdravaprehrana.tests\\upravljalecnakupovanjatests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|solutionrelative:zdravaprehrana.tests\\upravljalecnakupovanjatests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|c:\\users\\maurice\\desktop\\zravapreh\\zdravaprehrana\\zdravaprehrana\\zdravaprehrana.tests\\upravljalecreceptovtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|solutionrelative:zdravaprehrana.tests\\upravljalecreceptovtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|c:\\users\\maurice\\desktop\\zravapreh\\zdravaprehrana\\zdravaprehrana\\zdravaprehrana.tests\\nakupovalniseznamtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -386,6 +386,32 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UpravljalecReceptovTests.cs",
+              "DocumentMoniker": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\UpravljalecReceptovTests.cs",
+              "RelativeDocumentMoniker": "ZdravaPrehrana.Tests\\UpravljalecReceptovTests.cs",
+              "ToolTip": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\UpravljalecReceptovTests.cs",
+              "RelativeToolTip": "ZdravaPrehrana.Tests\\UpravljalecReceptovTests.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAkwLcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-13T16:51:46.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UpravljalecNakupovanjaTests.cs",
+              "DocumentMoniker": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\UpravljalecNakupovanjaTests.cs",
+              "RelativeDocumentMoniker": "ZdravaPrehrana.Tests\\UpravljalecNakupovanjaTests.cs",
+              "ToolTip": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\UpravljalecNakupovanjaTests.cs",
+              "RelativeToolTip": "ZdravaPrehrana.Tests\\UpravljalecNakupovanjaTests.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwDQAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-13T16:51:04.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Container.targets",
               "DocumentMoniker": "C:\\Users\\Maurice\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\build\\Container.targets",
@@ -398,39 +424,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UpravljalecReceptovTests.cs",
-              "DocumentMoniker": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\UpravljalecReceptovTests.cs",
-              "RelativeDocumentMoniker": "ZdravaPrehrana.Tests\\UpravljalecReceptovTests.cs",
-              "ToolTip": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\UpravljalecReceptovTests.cs",
-              "RelativeToolTip": "ZdravaPrehrana.Tests\\UpravljalecReceptovTests.cs",
-              "ViewState": "AgIAAJYAAAAAAAAAAAAmwLQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T16:51:46.271Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UpravljalecNakupovanjaTests.cs",
-              "DocumentMoniker": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\UpravljalecNakupovanjaTests.cs",
-              "RelativeDocumentMoniker": "ZdravaPrehrana.Tests\\UpravljalecNakupovanjaTests.cs",
-              "ToolTip": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\UpravljalecNakupovanjaTests.cs",
-              "RelativeToolTip": "ZdravaPrehrana.Tests\\UpravljalecNakupovanjaTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwCoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T16:51:04.608Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "NakupovalniSeznamTests.cs",
               "DocumentMoniker": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\NakupovalniSeznamTests.cs",
               "RelativeDocumentMoniker": "ZdravaPrehrana.Tests\\NakupovalniSeznamTests.cs",
               "ToolTip": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\NakupovalniSeznamTests.cs",
               "RelativeToolTip": "ZdravaPrehrana.Tests\\NakupovalniSeznamTests.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwDoAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwCoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-13T16:46:40.469Z",
               "EditorCaption": ""
@@ -457,8 +457,7 @@
               "RelativeToolTip": "ZdravaPrehrana.Tests\\MSTestSettings.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T16:38:59.435Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T16:38:59.435Z"
             },
             {
               "$type": "Document",

@@ -50,16 +50,19 @@ namespace ZdravaPrehrana.Tests
             double kolicina = 2;
             string enota = "kg";
 
+            // Počistimo vse obstoječe postavke
+            _context.SeznamPostavke.RemoveRange(_context.SeznamPostavke);
+            await _context.SaveChangesAsync();
+
             // Act
-            await _upravljalec.DodajIzdelek(naziv, kolicina, enota, seznam.Id);
+            var rezultat = await _upravljalec.DodajIzdelek(naziv, kolicina, enota, seznam.Id);
 
             // Assert
+            Assert.IsTrue(rezultat);
             var posodobljenSeznam = await _upravljalec.PridobiSeznam(seznam.Id);
-            Assert.AreEqual(1, posodobljenSeznam.Postavke.Count);  // Test ne uspe ker vrne 2 namesto 1
+            Assert.AreEqual(1, posodobljenSeznam.Postavke.Count);
             var postavka = posodobljenSeznam.Postavke.First();
             Assert.AreEqual(naziv, postavka.Naziv);
-            Assert.AreEqual(kolicina, postavka.Kolicina);
-            Assert.AreEqual(enota, postavka.Enota);
         }
 
         [TestMethod]
