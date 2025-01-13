@@ -17,25 +17,25 @@ jobs:
         dotnet-version: 6.0.x
         
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./ZdravaPrehrana/ZdravaPrehrana.sln
       
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build ./ZdravaPrehrana/ZdravaPrehrana.sln --no-restore
       
     - name: Test
-      run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
+      run: dotnet test ./ZdravaPrehrana/ZdravaPrehrana.sln --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
       
     - name: Test Report
       uses: dorny/test-reporter@v1
       if: always()
       with:
         name: Tests Report
-        path: "**/test-results.trx"
+        path: "./ZdravaPrehrana/ZdravaPrehrana.Tests/TestResults/test-results.trx"
         reporter: dotnet-trx
         fail-on-error: true
 
   build-and-push:
-    needs: test  # To zagotovi, da se Docker build začne šele po uspešnih testih
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
