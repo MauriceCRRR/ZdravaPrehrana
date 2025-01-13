@@ -1,4 +1,4 @@
-name: Docker Build and Push
+name: Docker Build, Test and Push
 
 on:
   push:
@@ -6,9 +6,37 @@ on:
       - main
 
 jobs:
-  build-and-push:
+  test:
     runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore ./ZdravaPrehrana/ZdravaPrehrana.sln
+      
+    - name: Build
+      run: dotnet build ./ZdravaPrehrana/ZdravaPrehrana.sln --no-restore
+      
+    - name: Test
+      run: dotnet test ./ZdravaPrehrana/ZdravaPrehrana.sln --no-build --verbosity normal --results-directory TestResults --logger "trx;LogFileName=test-results.trx"
+      
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Tests Report
+        path: "TestResults/*.trx"
+        reporter: dotnet-trx
+        fail-on-error: true
 
+  build-and-push:
+    needs: test
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
