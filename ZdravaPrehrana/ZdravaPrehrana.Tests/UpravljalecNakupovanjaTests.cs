@@ -15,7 +15,6 @@ namespace ZdravaPrehrana.Tests
         [TestInitialize]
         public void Setup()
         {
-            // Nastavimo in-memory database za testiranje
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(databaseName: "TestDB_" + Guid.NewGuid().ToString())
                 .Options;

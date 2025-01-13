@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZdravaPrehrana.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99454d177e41d5da75c277068711aa9a2ffa488d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d8b16f8f321db020e284076cb42bf9bb6e7a4844")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZdravaPrehrana.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZdravaPrehrana.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

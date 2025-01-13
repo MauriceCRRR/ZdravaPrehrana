@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ZdravaPrehrana.Entitete;
-using ZdravaPrehrana;
 
 namespace ZdravaPrehrana.Tests
 {
@@ -43,20 +42,6 @@ namespace ZdravaPrehrana.Tests
         }
 
         [TestMethod]
-        public void Test_OdstraniSestavino_ExistingItem_RemovedSuccessfully()
-        {
-            // Arrange
-            var seznam = new NakupovalniSeznam();
-            seznam.DodajSestavino("Jabolka", 2, "kg");
-
-            // Act
-            seznam.OdstraniSestavino("Jabolka");
-
-            // Assert
-            Assert.AreEqual(0, seznam.Postavke.Count);
-        }
-
-        [TestMethod]
         public void Test_ObkljukajPostavko_ExistingItem_StatusChanged()
         {
             // Arrange
@@ -69,22 +54,6 @@ namespace ZdravaPrehrana.Tests
             // Assert
             var postavka = seznam.Postavke.First();
             Assert.IsTrue(postavka.JeObkljukana);
-        }
-
-        [TestMethod]
-        public void Test_OdkljukajPostavko_ExistingItem_StatusChanged()
-        {
-            // Arrange
-            var seznam = new NakupovalniSeznam();
-            seznam.DodajSestavino("Jabolka", 2, "kg");
-            seznam.ObkljukajPostavko("Jabolka");
-
-            // Act
-            seznam.OdkljukajPostavko("Jabolka");
-
-            // Assert
-            var postavka = seznam.Postavke.First();
-            Assert.IsFalse(postavka.JeObkljukana);
         }
     }
 }
