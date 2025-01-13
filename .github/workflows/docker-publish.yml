@@ -14,7 +14,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 8.0.x
         
     - name: Restore dependencies
       run: dotnet restore ./ZdravaPrehrana/ZdravaPrehrana.sln
@@ -23,14 +23,14 @@ jobs:
       run: dotnet build ./ZdravaPrehrana/ZdravaPrehrana.sln --no-restore
       
     - name: Test
-      run: dotnet test ./ZdravaPrehrana/ZdravaPrehrana.sln --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
+      run: dotnet test ./ZdravaPrehrana/ZdravaPrehrana.sln --no-build --verbosity normal --results-directory TestResults --logger "trx;LogFileName=test-results.trx"
       
     - name: Test Report
       uses: dorny/test-reporter@v1
       if: always()
       with:
         name: Tests Report
-        path: "./ZdravaPrehrana/ZdravaPrehrana.Tests/TestResults/test-results.trx"
+        path: "TestResults/*.trx"
         reporter: dotnet-trx
         fail-on-error: true
 
