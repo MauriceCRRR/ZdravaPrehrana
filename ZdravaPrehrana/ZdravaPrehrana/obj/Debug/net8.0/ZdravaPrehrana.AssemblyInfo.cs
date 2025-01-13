@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZdravaPrehrana")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+23105bf672748b44b6b0354a705602b3ad654cfc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99454d177e41d5da75c277068711aa9a2ffa488d")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZdravaPrehrana")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZdravaPrehrana")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
