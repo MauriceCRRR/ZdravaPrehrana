@@ -1,4 +1,4 @@
-name: Docker Build and Push
+name: Docker Build, Test and Push
 
 on:
   push:
@@ -6,9 +6,37 @@ on:
       - main
 
 jobs:
-  build-and-push:
+  test:
     runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --no-restore
+      
+    - name: Test
+      run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
+      
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Tests Report
+        path: "**/test-results.trx"
+        reporter: dotnet-trx
+        fail-on-error: true
 
+  build-and-push:
+    needs: test  # To zagotovi, da se Docker build začne šele po uspešnih testih
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
