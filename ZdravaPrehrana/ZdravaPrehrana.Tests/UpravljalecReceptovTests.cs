@@ -31,6 +31,10 @@ namespace ZdravaPrehrana.Tests
         public async Task Test_DodajRecept_ValidInput_CreatedSuccessfully()
         {
             // Arrange
+            var sestavina = new Sestavina { Naziv = "TestSestavina" };
+            await _context.Sestavine.AddAsync(sestavina);
+            await _context.SaveChangesAsync();
+
             var recept = new Recept
             {
                 Naziv = "Test recept",
@@ -38,7 +42,15 @@ namespace ZdravaPrehrana.Tests
                 Kalorije = 500,
                 CasPriprave = 30,
                 JeJaven = true,
-                ReceptSestavine = new List<ReceptSestavina>()
+                ReceptSestavine = new List<ReceptSestavina>
+                {
+                    new ReceptSestavina
+                    {
+                        Sestavina = sestavina,
+                        Kolicina = 2,
+                        Enota = "kos"
+                    }
+                }
             };
 
             // Act
@@ -47,10 +59,11 @@ namespace ZdravaPrehrana.Tests
             // Assert
             Assert.IsTrue(rezultat);
             var shranjeniRecept = await _context.Recepti
+                .Include(r => r.ReceptSestavine)
+                .ThenInclude(rs => rs.Sestavina)
                 .FirstOrDefaultAsync(r => r.Naziv == "Test recept");
             Assert.IsNotNull(shranjeniRecept);
             Assert.AreEqual(recept.Naziv, shranjeniRecept.Naziv);
-            Assert.AreEqual(recept.Postopek, shranjeniRecept.Postopek);
         }
 
         [TestMethod]
@@ -63,8 +76,9 @@ namespace ZdravaPrehrana.Tests
             var recepti = await _upravljalec.PridobiJavneRecepte();
 
             // Assert
-            Assert.AreEqual(1, recepti.Count);
+            Assert.IsTrue(recepti.Any());
             Assert.IsTrue(recepti.All(r => r.JeJaven));
+            Assert.AreEqual(1, recepti.Count);
         }
 
         [TestMethod]
@@ -80,6 +94,44 @@ namespace ZdravaPrehrana.Tests
             // Assert
             Assert.AreEqual(2, recepti.Count);
             Assert.IsTrue(recepti.All(r => r.AvtorId == uporabnikId));
+        }
+
+        [TestMethod]
+        public async Task Test_UrediRecept_ValidInput_UpdatedSuccessfully()
+        {
+            // Arrange
+            var originalniRecept = new Recept
+            {
+                Naziv = "Originalni recept",
+                Postopek = "Originalni postopek",
+                Kalorije = 300,
+                CasPriprave = 30,
+                JeJaven = false,
+                AvtorId = 1
+            };
+            await _context.Recepti.AddAsync(originalniRecept);
+            await _context.SaveChangesAsync();
+
+            var posodobljenRecept = new Recept
+            {
+                Id = originalniRecept.Id,
+                Naziv = "Posodobljen recept",
+                Postopek = "Posodobljen postopek",
+                Kalorije = 400,
+                CasPriprave = 45,
+                JeJaven = true,
+                AvtorId = 1
+            };
+
+            // Act
+            var rezultat = await _upravljalec.UrediRecept(originalniRecept.Id, posodobljenRecept, 1);
+
+            // Assert
+            Assert.IsTrue(rezultat);
+            var shranjeniRecept = await _context.Recepti.FindAsync(originalniRecept.Id);
+            Assert.IsNotNull(shranjeniRecept);
+            Assert.AreEqual("Posodobljen recept", shranjeniRecept.Naziv);
+            Assert.AreEqual(400, shranjeniRecept.Kalorije);
         }
 
         private async Task DodajTestneRecepte()

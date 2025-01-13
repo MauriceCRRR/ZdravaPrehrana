@@ -3,7 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Maurice\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\build\\Container.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|c:\\users\\maurice\\desktop\\zravapreh\\zdravaprehrana\\zdravaprehrana\\zdravaprehrana.tests\\mstestsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|solutionrelative:zdravaprehrana.tests\\mstestsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|c:\\users\\maurice\\desktop\\zravapreh\\zdravaprehrana\\zdravaprehrana\\zdravaprehrana.tests\\nakupovalniseznamtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|solutionrelative:zdravaprehrana.tests\\nakupovalniseznamtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|c:\\users\\maurice\\desktop\\zravapreh\\zdravaprehrana\\zdravaprehrana\\zdravaprehrana.tests\\upravljalecreceptovtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -14,12 +19,7 @@
       "RelativeMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|solutionrelative:zdravaprehrana.tests\\upravljalecnakupovanjatests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|c:\\users\\maurice\\desktop\\zravapreh\\zdravaprehrana\\zdravaprehrana\\zdravaprehrana.tests\\nakupovalniseznamtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|solutionrelative:zdravaprehrana.tests\\nakupovalniseznamtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|c:\\users\\maurice\\desktop\\zravapreh\\zdravaprehrana\\zdravaprehrana\\zdravaprehrana.tests\\mstestsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|solutionrelative:zdravaprehrana.tests\\mstestsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Maurice\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\build\\Container.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A8034099-ABE1-48FC-9806-08BD1F973401}|ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj|c:\\users\\maurice\\desktop\\zravapreh\\zdravaprehrana\\zdravaprehrana\\zdravaprehrana.tests\\zdravaprehrana.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -369,7 +369,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
@@ -382,12 +382,11 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-01-11T23:23:27.406Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Container.targets",
               "DocumentMoniker": "C:\\Users\\Maurice\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\build\\Container.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\build\\Container.targets",
@@ -400,39 +399,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UpravljalecReceptovTests.cs",
               "DocumentMoniker": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\UpravljalecReceptovTests.cs",
               "RelativeDocumentMoniker": "ZdravaPrehrana.Tests\\UpravljalecReceptovTests.cs",
               "ToolTip": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\UpravljalecReceptovTests.cs",
               "RelativeToolTip": "ZdravaPrehrana.Tests\\UpravljalecReceptovTests.cs",
-              "ViewState": "AgIAAHYAAAAAAAAAAAA9wJQAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAowIAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-13T16:51:46.271Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "UpravljalecNakupovanjaTests.cs",
               "DocumentMoniker": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\UpravljalecNakupovanjaTests.cs",
               "RelativeDocumentMoniker": "ZdravaPrehrana.Tests\\UpravljalecNakupovanjaTests.cs",
               "ToolTip": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\UpravljalecNakupovanjaTests.cs",
               "RelativeToolTip": "ZdravaPrehrana.Tests\\UpravljalecNakupovanjaTests.cs",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAowGoAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAowGkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-13T16:51:04.608Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "NakupovalniSeznamTests.cs",
               "DocumentMoniker": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\NakupovalniSeznamTests.cs",
               "RelativeDocumentMoniker": "ZdravaPrehrana.Tests\\NakupovalniSeznamTests.cs",
               "ToolTip": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\NakupovalniSeznamTests.cs",
               "RelativeToolTip": "ZdravaPrehrana.Tests\\NakupovalniSeznamTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-13T16:46:40.469Z",
               "EditorCaption": ""
@@ -440,7 +439,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "ZdravaPrehrana.Tests",
+              "Title": "ZdravaPrehrana.Tests.csproj",
               "DocumentMoniker": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj",
               "RelativeDocumentMoniker": "ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj",
               "ToolTip": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\ZdravaPrehrana.Tests.csproj",
@@ -452,7 +451,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "MSTestSettings.cs",
               "DocumentMoniker": "C:\\Users\\Maurice\\Desktop\\ZravaPreh\\ZdravaPrehrana\\ZdravaPrehrana\\ZdravaPrehrana.Tests\\MSTestSettings.cs",
               "RelativeDocumentMoniker": "ZdravaPrehrana.Tests\\MSTestSettings.cs",
@@ -473,8 +472,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Cilji\\Index.cshtml.cs",
               "ViewState": "AgIAALoAAAAAAAAAAAAIwNwAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:35:56.033Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:35:56.033Z"
             },
             {
               "$type": "Document",
@@ -486,8 +484,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Cilji\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAO4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T12:36:04.906Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:36:04.906Z"
             },
             {
               "$type": "Document",
@@ -499,8 +496,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Controllers\\UpravljalecHranil.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:37:36.622Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:37:36.622Z"
             },
             {
               "$type": "Document",
@@ -525,8 +521,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Migrations\\20250113152727_TestiranjeFunkcij.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T15:27:27.459Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T15:27:27.459Z"
             },
             {
               "$type": "Document",
@@ -538,8 +533,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Entitete\\PrehranskiCilji.cs",
               "ViewState": "AgIAAEQAAAAAAAAAAAAUwHQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:13:50.305Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T11:13:50.305Z"
             },
             {
               "$type": "Document",
@@ -551,8 +545,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Recepti\\Izbrisi.cshtml.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAqwEcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T20:36:34.942Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T20:36:34.942Z"
             },
             {
               "$type": "Document",
@@ -564,8 +557,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-11T23:45:57.163Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-11T23:45:57.163Z"
             },
             {
               "$type": "Document",
@@ -577,8 +569,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Services\\UpravljalecCiljevService.cs",
               "ViewState": "AgIAAJ4AAAAAAAAAAAAowNMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T11:51:23.431Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T11:51:23.431Z"
             },
             {
               "$type": "Document",
@@ -590,8 +581,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Controllers\\UpravljalecCiljev.cs",
               "ViewState": "AgIAAEgAAAAAAAAAAAAowH0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T12:41:31.742Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T12:41:31.742Z"
             },
             {
               "$type": "Document",
@@ -603,8 +593,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Data\\ApplicationDbContext.cs",
               "ViewState": "AgIAAJgAAAAAAAAAAAAIwMYAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:29:46.258Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:29:46.258Z"
             },
             {
               "$type": "Document",
@@ -616,8 +605,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\VnosHranil\\Index.cshtml",
               "ViewState": "AgIAAGQAAAAAAAAAAAAAwJgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T12:38:10.121Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:38:10.121Z"
             },
             {
               "$type": "Document",
@@ -629,8 +617,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\VnosHranil\\Index.cshtml.cs",
               "ViewState": "AgIAAFkAAAAAAAAAAAAAwBMAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:38:23.964Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:38:23.964Z"
             },
             {
               "$type": "Document",
@@ -653,8 +640,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Dashboard\\Index.cshtml",
               "ViewState": "AgIAADAAAAAAAAAAAAAkwEMAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T12:14:45.283Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:14:45.283Z"
             },
             {
               "$type": "Document",
@@ -666,8 +652,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\_ViewImports.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T20:43:06.722Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T20:43:06.722Z"
             },
             {
               "$type": "Document",
@@ -679,8 +664,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAFEAAAAAAAAAAAAqwCMAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-11T23:54:12.814Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-11T23:54:12.814Z"
             },
             {
               "$type": "Document",
@@ -692,8 +676,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T11:51:28.032Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T11:51:28.032Z"
             },
             {
               "$type": "Document",
@@ -705,8 +688,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Dashboard\\Index.cshtml.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAiwDIAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:14:45.967Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:14:45.967Z"
             },
             {
               "$type": "Document",
@@ -718,8 +700,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Error.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:47:43.988Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T11:47:43.988Z"
             },
             {
               "$type": "Document",
@@ -731,8 +712,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Dockerfile",
               "ViewState": "AgIAAAYAAAAAAAAAAIBJwCIAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-01-12T11:45:25.091Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T11:45:25.091Z"
             },
             {
               "$type": "Document",
@@ -744,8 +724,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Index.cshtml.cs",
               "ViewState": "AgIAAC8AAAAAAAAAAAAwwAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:05:38.985Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:05:38.985Z"
             },
             {
               "$type": "Document",
@@ -757,8 +736,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T12:05:35.118Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:05:35.118Z"
             },
             {
               "$type": "Document",
@@ -770,8 +748,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Entitete\\UporabnikProfil.cs",
               "ViewState": "AgIAADkAAAAAAAAAAADwv2gAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T13:58:06.035Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T13:58:06.035Z"
             },
             {
               "$type": "Document",
@@ -783,8 +760,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Controllers\\UpravljalecJedilnika.cs",
               "ViewState": "AgIAAHIBAAAAAAAAAAAIwJIBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:16:42.786Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:16:42.786Z"
             },
             {
               "$type": "Document",
@@ -796,8 +772,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Controllers\\UpravljalecDeljenja.cs",
               "ViewState": "AgIAAGoAAAAAAAAAAAAgwJ4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T20:27:44.915Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T20:27:44.915Z"
             },
             {
               "$type": "Document",
@@ -809,8 +784,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Account\\Profile.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-13T11:16:06.486Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T11:16:06.486Z"
             },
             {
               "$type": "Document",
@@ -822,8 +796,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Account\\Profile.cshtml.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAxwI8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:16:23.761Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T11:16:23.761Z"
             },
             {
               "$type": "Document",
@@ -835,8 +808,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Jedilnik\\Index.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGUBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:17:33.875Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:17:33.875Z"
             },
             {
               "$type": "Document",
@@ -848,8 +820,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Jedilnik\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAO0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T12:20:18.545Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:20:18.545Z"
             },
             {
               "$type": "Document",
@@ -861,8 +832,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Controllers\\UpravljalecOcen.cs",
               "ViewState": "AgIAACsAAAAAAAAAAAAswEwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T10:42:50.921Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T10:42:50.921Z"
             },
             {
               "$type": "Document",
@@ -874,8 +844,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Controllers\\UpravljalecNakupovanja.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAtwD4AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T13:11:59.048Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T13:11:59.048Z"
             },
             {
               "$type": "Document",
@@ -887,8 +856,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Controllers\\UpravljalecNasvetov.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T15:06:04.347Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T15:06:04.347Z"
             },
             {
               "$type": "Document",
@@ -900,8 +868,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Jedilnik\\DeljeniJedilniki.cshtml",
               "ViewState": "AgIAADkAAAAAAAAAAIBJwGgAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-13T10:47:36.72Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T10:47:36.72Z"
             },
             {
               "$type": "Document",
@@ -913,8 +880,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Jedilnik\\DeljeniJedilniki.cshtml.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAiwDAAAABcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:00:46.531Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T11:00:46.531Z"
             },
             {
               "$type": "Document",
@@ -926,8 +892,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Entitete\\Feedback.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T10:38:50.071Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-13T10:38:50.071Z"
             },
             {
               "$type": "Document",
@@ -939,8 +904,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Entitete\\Ocena.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:51:44.642Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:51:44.642Z"
             },
             {
               "$type": "Document",
@@ -952,8 +916,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Controllers\\UpravljalecFeedbacka.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T13:22:10.849Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T13:22:10.849Z"
             },
             {
               "$type": "Document",
@@ -965,8 +928,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Entitete\\Jedilnik.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:18:42.845Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:18:42.845Z"
             },
             {
               "$type": "Document",
@@ -978,8 +940,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Recepti\\Ustvari.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T20:34:43.246Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T20:34:43.246Z"
             },
             {
               "$type": "Document",
@@ -991,8 +952,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Controllers\\UpravljalecReceptov.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAAqwEkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:52:11.873Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:52:11.873Z"
             },
             {
               "$type": "Document",
@@ -1004,8 +964,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Recepti\\Podrobnosti.cshtml",
               "ViewState": "AgIAAAIAAAAAAAAAAAAowG4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T20:35:20.054Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T20:35:20.054Z"
             },
             {
               "$type": "Document",
@@ -1017,8 +976,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Entitete\\Recept.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAIBJwCsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:52:01.639Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:52:01.639Z"
             },
             {
               "$type": "Document",
@@ -1030,8 +988,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Recepti\\Ustvari.cshtml",
               "ViewState": "AgIAAE4AAAAAAAAAAAAowHcAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T20:34:10.642Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T20:34:10.642Z"
             },
             {
               "$type": "Document",
@@ -1043,8 +1000,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Entitete\\ReceptSestavina.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T22:09:12.365Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T22:09:12.365Z"
             },
             {
               "$type": "Document",
@@ -1056,8 +1012,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Recepti\\Index.cshtml",
               "ViewState": "AgIAACsAAAAAAAAAAAAowF8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T20:33:23.945Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T20:33:23.945Z"
             },
             {
               "$type": "Document",
@@ -1069,8 +1024,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Recepti\\Izbrisi.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T20:36:27.664Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T20:36:27.664Z"
             },
             {
               "$type": "Document",
@@ -1093,8 +1047,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Recepti\\Podrobnosti.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T20:35:56.176Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T20:35:56.176Z"
             },
             {
               "$type": "Document",
@@ -1106,8 +1059,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Recepti\\Uredi.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAIIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T20:37:15.163Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T20:37:15.163Z"
             },
             {
               "$type": "Document",
@@ -1119,8 +1071,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Recepti\\Uredi.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T20:38:30.089Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T20:38:30.089Z"
             },
             {
               "$type": "Document",
@@ -1132,8 +1083,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Recepti\\Index.cshtml.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAUwDkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T20:33:29.156Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T20:33:29.156Z"
             },
             {
               "$type": "Document",
@@ -1145,8 +1095,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Entitete\\Sestavina.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:46:28.843Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:46:28.843Z"
             },
             {
               "$type": "Document",
@@ -1158,8 +1107,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\NakupovalniSeznami\\Index.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T13:11:35.841Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T13:11:35.841Z"
             },
             {
               "$type": "Document",
@@ -1171,8 +1119,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Services\\UporabnikService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T11:51:24.223Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T11:51:24.223Z"
             },
             {
               "$type": "Document",
@@ -1184,8 +1131,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Entitete\\Uporabnik.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAcwB4AAAB3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:05:55.968Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:05:55.968Z"
             },
             {
               "$type": "Document",
@@ -1197,8 +1143,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Privacy.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T20:47:46.596Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T20:47:46.596Z"
             },
             {
               "$type": "Document",
@@ -1210,8 +1155,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Privacy.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T20:49:07.743Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T20:49:07.743Z"
             },
             {
               "$type": "Document",
@@ -1223,8 +1167,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Nasveti\\Index.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T13:22:29.749Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T13:22:29.749Z"
             },
             {
               "$type": "Document",
@@ -1236,8 +1179,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Account\\Register.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:09:32.311Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:09:32.311Z"
             },
             {
               "$type": "Document",
@@ -1249,8 +1191,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Account\\Register.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T12:07:41.062Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:07:41.062Z"
             },
             {
               "$type": "Document",
@@ -1262,8 +1203,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Account\\Logout.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T18:23:56.15Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T18:23:56.15Z"
             },
             {
               "$type": "Document",
@@ -1275,8 +1215,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Nasveti\\Strokovnjak.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T15:10:56.699Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T15:10:56.699Z"
             },
             {
               "$type": "Document",
@@ -1288,8 +1227,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\NakupovalniSeznami\\Index.cshtml",
               "ViewState": "AgIAAD4AAAAAAAAAAAAkwFsAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T13:11:21.706Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T13:11:21.706Z"
             },
             {
               "$type": "Document",
@@ -1301,8 +1239,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Error.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T20:43:07.352Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T20:43:07.352Z"
             },
             {
               "$type": "Document",
@@ -1314,8 +1251,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Account\\Logout.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T18:23:58.109Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T18:23:58.109Z"
             },
             {
               "$type": "Document",
@@ -1327,8 +1263,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Entitete\\Nasvet.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T15:06:13.716Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T15:06:13.716Z"
             },
             {
               "$type": "Document",
@@ -1340,8 +1275,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Nasveti\\Strokovnjak.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAABcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T15:10:44.327Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T15:10:44.327Z"
             },
             {
               "$type": "Document",
@@ -1353,8 +1287,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Pages\\Nasveti\\Index.cshtml",
               "ViewState": "AgIAAEIAAAAAAAAAAIBJwGIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-12T15:06:26.65Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T15:06:26.65Z"
             },
             {
               "$type": "Document",
@@ -1366,8 +1299,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Models\\RegisterInput.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:08:36.185Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:08:36.185Z"
             },
             {
               "$type": "Document",
@@ -1379,8 +1311,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Entitete\\UporabniskaVloga.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T14:05:54.889Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T14:05:54.889Z"
             },
             {
               "$type": "Document",
@@ -1403,8 +1334,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Models\\LogInInput.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:09:02.738Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:09:02.738Z"
             },
             {
               "$type": "Document",
@@ -1416,8 +1346,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-01-11T23:45:38.983Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-11T23:45:38.983Z"
             },
             {
               "$type": "Document",
@@ -1429,8 +1358,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\libman.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-01-11T23:42:16.56Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-11T23:42:16.56Z"
             },
             {
               "$type": "Document",
@@ -1442,8 +1370,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Entitete\\NakupovalniSeznam.cs",
               "ViewState": "AgIAACwAAAAAAAAAAAAAwBwAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T11:49:10.685Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T11:49:10.685Z"
             },
             {
               "$type": "Document",
@@ -1455,8 +1382,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Entitete\\SeznamPostavka.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T11:48:45.55Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T11:48:45.55Z"
             },
             {
               "$type": "Document",
@@ -1468,8 +1394,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Entitete\\Obrok.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:45:22.055Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:45:22.055Z"
             },
             {
               "$type": "Document",
@@ -1481,8 +1406,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Entitete\\VnosHranil.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAiwCwAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-12T12:36:26.201Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-12T12:36:26.201Z"
             },
             {
               "$type": "Document",
@@ -1494,8 +1418,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\wwwroot\\lib\\jquery\\jquery.js",
               "ViewState": "AgIAAG4BAAAAAAAAAAApwHwBAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-01-11T23:41:53.018Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-11T23:41:53.018Z"
             },
             {
               "$type": "Document",
@@ -1507,8 +1430,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\wwwroot\\lib\\bootstrap\\js\\bootstrap.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-01-11T23:41:43.479Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-11T23:41:43.479Z"
             },
             {
               "$type": "Document",
@@ -1520,8 +1442,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\wwwroot\\css\\site.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-01-11T23:41:34.923Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-11T23:41:34.923Z"
             },
             {
               "$type": "Document",
@@ -1533,8 +1454,7 @@
               "RelativeToolTip": "ZdravaPrehrana\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-01-11T23:41:30.571Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-11T23:41:30.571Z"
             }
           ]
         }
