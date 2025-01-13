@@ -38,6 +38,19 @@ namespace ZdravaPrehrana.Tests
             _context.Uporabniki.Add(uporabnik);
             await _context.SaveChangesAsync();
 
+            // Dodaj sestavino
+            var sestavina = new Sestavina
+            {
+                Id = 1,
+                Naziv = "TestSestavina",
+                Kalorije = 100,
+                Beljakovine = 10,
+                Mascobe = 5,
+                OgljikoviHidrati = 15
+            };
+            await _context.Sestavine.AddAsync(sestavina);
+            await _context.SaveChangesAsync();
+
             // Preverimo če je uporabnik shranjen
             var shranjeniUporabnik = await _context.Uporabniki.FindAsync(1);
             if (shranjeniUporabnik == null)
@@ -53,7 +66,19 @@ namespace ZdravaPrehrana.Tests
             var uporabnik = await _context.Uporabniki.FindAsync(1);
             Assert.IsNotNull(uporabnik, "Uporabnik mora obstajati pred testom");
 
+            // Najdi sestavino
+            var sestavina = await _context.Sestavine.FindAsync(1);
+            Assert.IsNotNull(sestavina, "Sestavina mora obstajati pred testom");
+
             // Arrange
+            var receptSestavina = new ReceptSestavina
+            {
+                SestavinaId = sestavina.Id,
+                Sestavina = sestavina,
+                Kolicina = 100,
+                Enota = "g"
+            };
+
             var recept = new Recept
             {
                 Naziv = "Test recept",
@@ -64,7 +89,7 @@ namespace ZdravaPrehrana.Tests
                 AvtorId = uporabnik.Id,
                 DatumUstvarjanja = DateTime.Now,
                 Avtor = uporabnik,
-                ReceptSestavine = new List<ReceptSestavina>()
+                ReceptSestavine = new List<ReceptSestavina> { receptSestavina }
             };
 
             // Act
@@ -73,19 +98,33 @@ namespace ZdravaPrehrana.Tests
             // Assert
             Assert.IsTrue(rezultat);
             var shranjeniRecept = await _context.Recepti
+                .Include(r => r.ReceptSestavine)
                 .Include(r => r.Avtor)
                 .FirstOrDefaultAsync(r => r.Naziv == "Test recept");
             Assert.IsNotNull(shranjeniRecept);
             Assert.AreEqual(recept.Naziv, shranjeniRecept.Naziv);
             Assert.AreEqual(recept.Postopek, shranjeniRecept.Postopek);
+            Assert.AreEqual(1, shranjeniRecept.ReceptSestavine.Count);
         }
 
         [TestMethod]
         public async Task Test_PridobiJavneRecepte_ReturnsOnlyPublicRecipes()
         {
             // Arrange
+            var uporabnik = await _context.Uporabniki.FindAsync(1);
+            var sestavina = await _context.Sestavine.FindAsync(1);
+            Assert.IsNotNull(sestavina);
+
             _context.Recepti.RemoveRange(_context.Recepti);
             await _context.SaveChangesAsync();
+
+            var receptSestavina = new ReceptSestavina
+            {
+                SestavinaId = sestavina.Id,
+                Sestavina = sestavina,
+                Kolicina = 100,
+                Enota = "g"
+            };
 
             var javniRecept = new Recept
             {
@@ -96,7 +135,8 @@ namespace ZdravaPrehrana.Tests
                 JeJaven = true,
                 AvtorId = 1,
                 DatumUstvarjanja = DateTime.Now,
-                ReceptSestavine = new List<ReceptSestavina>()
+                Avtor = uporabnik,
+                ReceptSestavine = new List<ReceptSestavina> { receptSestavina }
             };
 
             await _context.Recepti.AddAsync(javniRecept);
@@ -134,6 +174,17 @@ namespace ZdravaPrehrana.Tests
             var uporabnik = await _context.Uporabniki.FindAsync(1);
             Assert.IsNotNull(uporabnik, "Uporabnik mora obstajati pred testom");
 
+            var sestavina = await _context.Sestavine.FindAsync(1);
+            Assert.IsNotNull(sestavina, "Sestavina mora obstajati pred testom");
+
+            var receptSestavina = new ReceptSestavina
+            {
+                SestavinaId = sestavina.Id,
+                Sestavina = sestavina,
+                Kolicina = 100,
+                Enota = "g"
+            };
+
             var recept = new Recept
             {
                 Naziv = "Originalni recept",
@@ -144,11 +195,19 @@ namespace ZdravaPrehrana.Tests
                 AvtorId = uporabnik.Id,
                 DatumUstvarjanja = DateTime.Now,
                 Avtor = uporabnik,
-                ReceptSestavine = new List<ReceptSestavina>()
+                ReceptSestavine = new List<ReceptSestavina> { receptSestavina }
             };
 
             await _context.Recepti.AddAsync(recept);
             await _context.SaveChangesAsync();
+
+            var posodobljenReceptSestavina = new ReceptSestavina
+            {
+                SestavinaId = sestavina.Id,
+                Sestavina = sestavina,
+                Kolicina = 150,
+                Enota = "g"
+            };
 
             var posodobljenRecept = new Recept
             {
@@ -160,7 +219,7 @@ namespace ZdravaPrehrana.Tests
                 JeJaven = true,
                 AvtorId = uporabnik.Id,
                 DatumUstvarjanja = recept.DatumUstvarjanja,
-                ReceptSestavine = new List<ReceptSestavina>()
+                ReceptSestavine = new List<ReceptSestavina> { posodobljenReceptSestavina }
             };
 
             // Act
@@ -168,9 +227,12 @@ namespace ZdravaPrehrana.Tests
 
             // Assert
             Assert.IsTrue(rezultat);
-            var shranjeniRecept = await _context.Recepti.FindAsync(recept.Id);
+            var shranjeniRecept = await _context.Recepti
+                .Include(r => r.ReceptSestavine)
+                .FirstOrDefaultAsync(r => r.Id == recept.Id);
             Assert.IsNotNull(shranjeniRecept);
             Assert.AreEqual("Posodobljen recept", shranjeniRecept.Naziv);
+            Assert.AreEqual(1, shranjeniRecept.ReceptSestavine.Count);
         }
 
         private async Task DodajTestneRecepte()
@@ -178,44 +240,55 @@ namespace ZdravaPrehrana.Tests
             var uporabnik = await _context.Uporabniki.FindAsync(1);
             Assert.IsNotNull(uporabnik, "Uporabnik mora obstajati pred testom");
 
-            var recepti = new List<Recept>
+            var sestavina = await _context.Sestavine.FindAsync(1);
+            Assert.IsNotNull(sestavina, "Sestavina mora obstajati pred testom");
+
+            var receptSestavina = new ReceptSestavina
             {
-                new Recept
-                {
-                    Naziv = "Javni recept",
-                    Postopek = "Test postopek 1",
-                    Kalorije = 300,
-                    CasPriprave = 30,
-                    JeJaven = true,
-                    AvtorId = 1,
-                    DatumUstvarjanja = DateTime.Now,
-                    Avtor = uporabnik,
-                    ReceptSestavine = new List<ReceptSestavina>()
-                },
-                new Recept
-                {
-                    Naziv = "Zasebni recept 1",
-                    Postopek = "Test postopek 2",
-                    Kalorije = 400,
-                    CasPriprave = 45,
-                    JeJaven = false,
-                    AvtorId = 1,
-                    DatumUstvarjanja = DateTime.Now,
-                    Avtor = uporabnik,
-                    ReceptSestavine = new List<ReceptSestavina>()
-                },
-                new Recept
-                {
-                    Naziv = "Zasebni recept 2",
-                    Postopek = "Test postopek 3",
-                    Kalorije = 500,
-                    CasPriprave = 60,
-                    JeJaven = false,
-                    AvtorId = 2,
-                    DatumUstvarjanja = DateTime.Now,
-                    ReceptSestavine = new List<ReceptSestavina>()
-                }
+                SestavinaId = sestavina.Id,
+                Sestavina = sestavina,
+                Kolicina = 100,
+                Enota = "g"
             };
+
+            var recepti = new List<Recept>
+           {
+               new Recept
+               {
+                   Naziv = "Javni recept",
+                   Postopek = "Test postopek 1",
+                   Kalorije = 300,
+                   CasPriprave = 30,
+                   JeJaven = true,
+                   AvtorId = 1,
+                   DatumUstvarjanja = DateTime.Now,
+                   Avtor = uporabnik,
+                   ReceptSestavine = new List<ReceptSestavina> { receptSestavina }
+               },
+               new Recept
+               {
+                   Naziv = "Zasebni recept 1",
+                   Postopek = "Test postopek 2",
+                   Kalorije = 400,
+                   CasPriprave = 45,
+                   JeJaven = false,
+                   AvtorId = 1,
+                   DatumUstvarjanja = DateTime.Now,
+                   Avtor = uporabnik,
+                   ReceptSestavine = new List<ReceptSestavina> { receptSestavina }
+               },
+               new Recept
+               {
+                   Naziv = "Zasebni recept 2",
+                   Postopek = "Test postopek 3",
+                   Kalorije = 500,
+                   CasPriprave = 60,
+                   JeJaven = false,
+                   AvtorId = 2,
+                   DatumUstvarjanja = DateTime.Now,
+                   ReceptSestavine = new List<ReceptSestavina> { receptSestavina }
+               }
+           };
 
             await _context.Recepti.AddRangeAsync(recepti);
             await _context.SaveChangesAsync();
