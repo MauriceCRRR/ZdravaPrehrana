@@ -6,7 +6,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    permissions: # Dodamo dovoljenja za pisanje poročil
+    permissions: 
       checks: write
       pull-requests: write
     steps:
