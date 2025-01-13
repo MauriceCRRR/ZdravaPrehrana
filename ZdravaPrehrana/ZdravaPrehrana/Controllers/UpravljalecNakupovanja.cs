@@ -59,10 +59,8 @@ namespace ZdravaPrehrana.Controllers
                     NakupovalniSeznamId = seznamId
                 };
 
-                // Dodamo postavko v DbSet in v seznam
-                _context.SeznamPostavke.Add(novaPostavka);
+                // Dodamo postavko samo v seznam - EF Core bo sam poskrbel za DbSet
                 seznam.Postavke.Add(novaPostavka);
-
                 await _context.SaveChangesAsync();
 
                 Console.WriteLine($"Uspešno dodan izdelek {naziv} v seznam {seznamId}");

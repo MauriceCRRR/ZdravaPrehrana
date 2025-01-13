@@ -25,16 +25,23 @@ namespace ZdravaPrehrana.Tests
             _context = new ApplicationDbContext(options);
             _loggerMock = new Mock<ILogger<UpravljalecReceptov>>();
             _upravljalec = new UpravljalecReceptov(_context, _loggerMock.Object);
+
+            // Dodamo testnega uporabnika
+            var uporabnik = new Uporabnik
+            {
+                Id = 1,
+                UporabniskoIme = "TestUser",
+                Email = "test@example.com",
+                Geslo = "TestGeslo123"
+            };
+            _context.Uporabniki.Add(uporabnik);
+            _context.SaveChanges();
         }
 
         [TestMethod]
         public async Task Test_DodajRecept_ValidInput_CreatedSuccessfully()
         {
             // Arrange
-            var sestavina = new Sestavina { Naziv = "TestSestavina" };
-            await _context.Sestavine.AddAsync(sestavina);
-            await _context.SaveChangesAsync();
-
             var recept = new Recept
             {
                 Naziv = "Test recept",
@@ -42,8 +49,8 @@ namespace ZdravaPrehrana.Tests
                 Kalorije = 500,
                 CasPriprave = 30,
                 JeJaven = true,
-                ReceptSestavine = new List<ReceptSestavina>(),
-                AvtorId = 1
+                AvtorId = 1,
+                DatumUstvarjanja = DateTime.Now
             };
 
             // Act
@@ -54,12 +61,14 @@ namespace ZdravaPrehrana.Tests
             var shranjeniRecept = await _context.Recepti
                 .FirstOrDefaultAsync(r => r.Naziv == "Test recept");
             Assert.IsNotNull(shranjeniRecept);
+            Assert.AreEqual(recept.Naziv, shranjeniRecept.Naziv);
+            Assert.AreEqual(recept.Postopek, shranjeniRecept.Postopek);
         }
 
         [TestMethod]
         public async Task Test_PridobiJavneRecepte_ReturnsOnlyPublicRecipes()
         {
-            // Arrange - najprej počistimo bazo
+            // Arrange
             _context.Recepti.RemoveRange(_context.Recepti);
             await _context.SaveChangesAsync();
 
@@ -70,7 +79,8 @@ namespace ZdravaPrehrana.Tests
                 Kalorije = 300,
                 CasPriprave = 30,
                 JeJaven = true,
-                AvtorId = 1
+                AvtorId = 1,
+                DatumUstvarjanja = DateTime.Now
             };
 
             await _context.Recepti.AddAsync(javniRecept);
@@ -88,6 +98,8 @@ namespace ZdravaPrehrana.Tests
         public async Task Test_PridobiRecepteUporabnika_ReturnsUserRecipes()
         {
             // Arrange
+            _context.Recepti.RemoveRange(_context.Recepti);
+            await _context.SaveChangesAsync();
             await DodajTestneRecepte();
             int uporabnikId = 1;
 
@@ -110,7 +122,8 @@ namespace ZdravaPrehrana.Tests
                 Kalorije = 300,
                 CasPriprave = 30,
                 JeJaven = false,
-                AvtorId = 1
+                AvtorId = 1,
+                DatumUstvarjanja = DateTime.Now
             };
 
             await _context.Recepti.AddAsync(recept);
@@ -124,7 +137,8 @@ namespace ZdravaPrehrana.Tests
                 Kalorije = 400,
                 CasPriprave = 45,
                 JeJaven = true,
-                AvtorId = 1
+                AvtorId = 1,
+                DatumUstvarjanja = recept.DatumUstvarjanja
             };
 
             // Act
@@ -148,7 +162,8 @@ namespace ZdravaPrehrana.Tests
                     Kalorije = 300,
                     CasPriprave = 30,
                     JeJaven = true,
-                    AvtorId = 1
+                    AvtorId = 1,
+                    DatumUstvarjanja = DateTime.Now
                 },
                 new Recept
                 {
@@ -157,7 +172,8 @@ namespace ZdravaPrehrana.Tests
                     Kalorije = 400,
                     CasPriprave = 45,
                     JeJaven = false,
-                    AvtorId = 1
+                    AvtorId = 1,
+                    DatumUstvarjanja = DateTime.Now
                 },
                 new Recept
                 {
@@ -166,7 +182,8 @@ namespace ZdravaPrehrana.Tests
                     Kalorije = 500,
                     CasPriprave = 60,
                     JeJaven = false,
-                    AvtorId = 2
+                    AvtorId = 2,
+                    DatumUstvarjanja = DateTime.Now
                 }
             };
 
