@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ZdravaPrehrana.Migrations
 {
     /// <inheritdoc />
-    public partial class DodajanjeDeljenjaMenijev : Migration
+    public partial class TestiranjeFunkcij : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -125,9 +125,12 @@ namespace ZdravaPrehrana.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CiljnaTeza = table.Column<double>(type: "REAL", nullable: false),
+                    CiljnaTeza = table.Column<double>(type: "decimal(18,2)", nullable: false),
+                    TedenIzgubaKg = table.Column<double>(type: "decimal(18,2)", nullable: false),
                     CasovniOkvir = table.Column<int>(type: "INTEGER", nullable: false),
                     DnevneKalorije = table.Column<int>(type: "INTEGER", nullable: false),
+                    BMR = table.Column<double>(type: "decimal(18,2)", nullable: false),
+                    TDEE = table.Column<double>(type: "decimal(18,2)", nullable: false),
                     UporabnikId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -171,10 +174,10 @@ namespace ZdravaPrehrana.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Datum = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Kalorije = table.Column<int>(type: "INTEGER", nullable: false),
-                    Beljakovine = table.Column<double>(type: "REAL", nullable: false),
-                    Mascobe = table.Column<double>(type: "REAL", nullable: false),
-                    OgljikoviHidrati = table.Column<double>(type: "REAL", nullable: false),
+                    Kalorije = table.Column<int>(type: "decimal(18,2)", nullable: false),
+                    Beljakovine = table.Column<double>(type: "decimal(18,2)", nullable: false),
+                    Mascobe = table.Column<double>(type: "decimal(18,2)", nullable: false),
+                    OgljikoviHidrati = table.Column<double>(type: "decimal(18,2)", nullable: false),
                     UporabnikId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -275,7 +278,7 @@ namespace ZdravaPrehrana.Migrations
                     JedilnikId = table.Column<int>(type: "INTEGER", nullable: true),
                     AvtorId = table.Column<int>(type: "INTEGER", nullable: false),
                     JeJaven = table.Column<bool>(type: "INTEGER", nullable: false, defaultValue: false),
-                    DatumUstvarjanja = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValue: new DateTime(2025, 1, 13, 12, 10, 18, 692, DateTimeKind.Local).AddTicks(3948))
+                    DatumUstvarjanja = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValue: new DateTime(2025, 1, 13, 16, 27, 26, 990, DateTimeKind.Local).AddTicks(1719))
                 },
                 constraints: table =>
                 {

@@ -136,7 +136,25 @@ namespace ZdravaPrehrana.Data
             modelBuilder.Entity<VnosHranil>(entity =>
             {
                 entity.HasKey(e => e.Id);
-                entity.Property(e => e.Datum).IsRequired();
+
+                entity.Property(e => e.Datum)
+                    .IsRequired();
+
+                entity.Property(e => e.Kalorije)
+                    .IsRequired()
+                    .HasColumnType("decimal(18,2)");
+
+                entity.Property(e => e.Beljakovine)
+                    .IsRequired()
+                    .HasColumnType("decimal(18,2)");
+
+                entity.Property(e => e.Mascobe)
+                    .IsRequired()
+                    .HasColumnType("decimal(18,2)");
+
+                entity.Property(e => e.OgljikoviHidrati)
+                    .IsRequired()
+                    .HasColumnType("decimal(18,2)");
 
                 entity.HasOne(e => e.Uporabnik)
                       .WithMany(u => u.VnosiHranil)
@@ -149,10 +167,35 @@ namespace ZdravaPrehrana.Data
             {
                 entity.HasKey(e => e.Id);
 
+                entity.Property(e => e.CiljnaTeza)
+                    .IsRequired()
+                    .HasColumnType("decimal(18,2)");
+
+                entity.Property(e => e.TedenIzgubaKg)
+                    .IsRequired()
+                    .HasColumnType("decimal(18,2)");
+
+                entity.Property(e => e.CasovniOkvir)
+                    .IsRequired();
+
+                entity.Property(e => e.DnevneKalorije)
+                    .IsRequired();
+
+                entity.Property(e => e.BMR)
+                    .IsRequired()
+                    .HasColumnType("decimal(18,2)");
+
+                entity.Property(e => e.TDEE)
+                    .IsRequired()
+                    .HasColumnType("decimal(18,2)");
+
                 entity.HasOne(e => e.Uporabnik)
-                      .WithMany(u => u.PrehranskiCilji)
-                      .HasForeignKey(e => e.UporabnikId)
-                      .OnDelete(DeleteBehavior.Restrict);
+                    .WithMany(u => u.PrehranskiCilji)
+                    .HasForeignKey(e => e.UporabnikId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                // Dodajte indeks za hitrejše poizvedbe
+                entity.HasIndex(e => e.UporabnikId);
             });
 
             modelBuilder.Entity<Jedilnik>(entity =>

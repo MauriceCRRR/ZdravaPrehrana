@@ -1,7 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using ZdravaPrehrana.Data;
 using ZdravaPrehrana.Entitete;
 
@@ -10,60 +10,93 @@ namespace ZdravaPrehrana.Controllers
     public class UpravljalecCiljev
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<UpravljalecCiljev> _logger;
 
-        public UpravljalecCiljev(ApplicationDbContext context)
+        public UpravljalecCiljev(
+            ApplicationDbContext context,
+            ILogger<UpravljalecCiljev> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
-        // Dodana metoda PridobiCilj
         public async Task<PrehranskiCilji> PridobiCilj(int uporabnikId)
         {
-            return await _context.PrehranskiCilji
-                .Include(c => c.Uporabnik)
-                .FirstOrDefaultAsync(c => c.UporabnikId == uporabnikId);
+            try
+            {
+                return await _context.PrehranskiCilji
+                    .Include(c => c.Uporabnik)
+                    .ThenInclude(u => u.Profil)
+                    .FirstOrDefaultAsync(c => c.UporabnikId == uporabnikId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Napaka pri pridobivanju cilja za uporabnika {UporabnikId}", uporabnikId);
+                throw;
+            }
         }
 
         public async Task<bool> NastaviCilje(PrehranskiCiljiPodatki podatki, int uporabnikId)
         {
             try
             {
-                var cilj = new PrehranskiCilji
+                if (podatki == null)
+                    throw new ArgumentNullException(nameof(podatki));
+
+                var obstojeci = await _context.PrehranskiCilji
+                    .FirstOrDefaultAsync(c => c.UporabnikId == uporabnikId);
+
+                if (obstojeci != null)
                 {
-                    UporabnikId = uporabnikId,
-                    CiljnaTeza = podatki.CiljnaTeza,
-                    CasovniOkvir = podatki.CasovniOkvir,
-                    DnevneKalorije = podatki.DnevneKalorije
-                };
-                _context.PrehranskiCilji.Add(cilj);
+                    obstojeci.PosodobiCilj(podatki);
+                }
+                else
+                {
+                    var cilj = new PrehranskiCilji
+                    {
+                        UporabnikId = uporabnikId,
+                        CiljnaTeza = podatki.CiljnaTeza,
+                        TedenIzgubaKg = podatki.TedenIzgubaKg,
+                        CasovniOkvir = podatki.CasovniOkvir,
+                        DnevneKalorije = podatki.DnevneKalorije,
+                        BMR = podatki.BMR,
+                        TDEE = podatki.TDEE
+                    };
+                    _context.PrehranskiCilji.Add(cilj);
+                }
+
                 await _context.SaveChangesAsync();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Napaka pri nastavljanju ciljev za uporabnika {UporabnikId}", uporabnikId);
                 return false;
             }
         }
 
         public async Task<double> SpremljajNapredek(int uporabnikId)
         {
-            var cilj = await _context.PrehranskiCilji
-                .Include(c => c.Uporabnik)
-                .FirstOrDefaultAsync(c => c.UporabnikId == uporabnikId);
+            try
+            {
+                var cilj = await _context.PrehranskiCilji
+                    .Include(c => c.Uporabnik)
+                    .ThenInclude(u => u.Profil)
+                    .FirstOrDefaultAsync(c => c.UporabnikId == uporabnikId);
 
-            if (cilj == null)
+                if (cilj == null)
+                    return 0;
+
+                return cilj.PreveriNapredek();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Napaka pri spremljanju napredka za uporabnika {UporabnikId}", uporabnikId);
                 return 0;
-
-            var zadnjiVnosi = await _context.VnosiHranil
-                .Where(v => v.UporabnikId == uporabnikId)
-                .OrderByDescending(v => v.Datum)
-                .Take(7)
-                .ToListAsync();
-
-            return cilj.PreveriNapredek();
+            }
         }
 
-        public async Task<bool> PosodobiCilje(PrehranskiCiljiPodatki podatki, int uporabnikId)
+        public async Task<bool> PreveriDoseganjeCiljev(int uporabnikId)
         {
             try
             {
@@ -73,34 +106,21 @@ namespace ZdravaPrehrana.Controllers
                 if (cilj == null)
                     return false;
 
-                cilj.PosodobiCilj(podatki);
-                await _context.SaveChangesAsync();
-                return true;
+                var zadnjiVnos = await _context.VnosiHranil
+                    .Where(v => v.UporabnikId == uporabnikId)
+                    .OrderByDescending(v => v.Datum)
+                    .FirstOrDefaultAsync();
+
+                if (zadnjiVnos == null)
+                    return false;
+
+                return zadnjiVnos.Kalorije <= cilj.DnevneKalorije;
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Napaka pri preverjanju doseganja ciljev za uporabnika {UporabnikId}", uporabnikId);
                 return false;
             }
-        }
-
-        public async Task<bool> PreveriDoseganjeCiljev(int uporabnikId)
-        {
-            var cilj = await _context.PrehranskiCilji
-                .Include(c => c.Uporabnik)
-                .FirstOrDefaultAsync(c => c.UporabnikId == uporabnikId);
-
-            if (cilj == null)
-                return false;
-
-            var zadnjiVnos = await _context.VnosiHranil
-                .Where(v => v.UporabnikId == uporabnikId)
-                .OrderByDescending(v => v.Datum)
-                .FirstOrDefaultAsync();
-
-            if (zadnjiVnos == null)
-                return false;
-
-            return zadnjiVnos.Kalorije <= cilj.DnevneKalorije;
         }
     }
 }

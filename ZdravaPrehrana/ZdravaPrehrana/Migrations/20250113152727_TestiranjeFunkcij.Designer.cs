@@ -11,8 +11,8 @@ using ZdravaPrehrana.Data;
 namespace ZdravaPrehrana.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250113111018_DodajanjeDeljenjaMenijev")]
-    partial class DodajanjeDeljenjaMenijev
+    [Migration("20250113152727_TestiranjeFunkcij")]
+    partial class TestiranjeFunkcij
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -234,14 +234,23 @@ namespace ZdravaPrehrana.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<double>("BMR")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("CasovniOkvir")
                         .HasColumnType("INTEGER");
 
                     b.Property<double>("CiljnaTeza")
-                        .HasColumnType("REAL");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("DnevneKalorije")
                         .HasColumnType("INTEGER");
+
+                    b.Property<double>("TDEE")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<double>("TedenIzgubaKg")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("UporabnikId")
                         .HasColumnType("INTEGER");
@@ -268,7 +277,7 @@ namespace ZdravaPrehrana.Migrations
                     b.Property<DateTime>("DatumUstvarjanja")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasDefaultValue(new DateTime(2025, 1, 13, 12, 10, 18, 692, DateTimeKind.Local).AddTicks(3948));
+                        .HasDefaultValue(new DateTime(2025, 1, 13, 16, 27, 26, 990, DateTimeKind.Local).AddTicks(1719));
 
                     b.Property<bool>("JeJaven")
                         .ValueGeneratedOnAdd()
@@ -443,19 +452,19 @@ namespace ZdravaPrehrana.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<double>("Beljakovine")
-                        .HasColumnType("REAL");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Datum")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Kalorije")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<double>("Mascobe")
-                        .HasColumnType("REAL");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<double>("OgljikoviHidrati")
-                        .HasColumnType("REAL");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("UporabnikId")
                         .HasColumnType("INTEGER");

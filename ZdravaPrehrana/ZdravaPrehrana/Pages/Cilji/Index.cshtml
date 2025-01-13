@@ -4,69 +4,236 @@
     ViewData["Title"] = "Prehranski cilji";
 }
 
+<style>
+    .progress {
+        height: 25px;
+    }
+
+    .progress-bar {
+        transition: width .6s ease;
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+
+    .card {
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        margin-bottom: 1.5rem;
+    }
+
+    .alert {
+        margin-top: 1rem;
+    }
+
+    .form-control:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .btn-primary {
+        transition: all 0.2s;
+    }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+        }
+
+    .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid rgba(0,0,0,.125);
+    }
+
+    .form-label {
+        font-weight: 500;
+    }
+
+    .alert-info {
+        background-color: #e8f4f8;
+        border-color: #d6e9f0;
+    }
+</style>
+
 <div class="container">
     <h2 class="mb-4">Prehranski cilji</h2>
+
+    @if (!string.IsNullOrEmpty(Model.UspehSporocilo))
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            @Model.UspehSporocilo
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
 
     @if (Model.TrenutniCilji != null)
     {
         <div class="card mb-4">
             <div class="card-header">
-                <h5 class="card-title mb-0">Trenutni cilji</h5>
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-target me-2"></i>Trenutni cilji
+                </h5>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <p><strong>Ciljna teža:</strong> @Model.TrenutniCilji.CiljnaTeza kg</p>
-                        <p><strong>Časovni okvir:</strong> @Model.TrenutniCilji.CasovniOkvir dni</p>
-                        <p><strong>Dnevne kalorije:</strong> @Model.TrenutniCilji.DnevneKalorije kcal</p>
+                        <div class="mb-3">
+                            <p><strong><i class="bi bi-person-fill me-2"></i>Trenutna teža:</strong> @Model.UporabnikProfil?.Teza.ToString("F1") kg</p>
+                            <p><strong><i class="bi bi-bullseye me-2"></i>Ciljna teža:</strong> @Model.TrenutniCilji.CiljnaTeza.ToString("F1") kg</p>
+                            <p><strong><i class="bi bi-graph-up me-2"></i>Željena tedenska sprememba:</strong> @Model.TrenutniCilji.TedenIzgubaKg.ToString("F1") kg</p>
+                            <p><strong><i class="bi bi-calendar-event me-2"></i>Potreben čas:</strong> @Model.TrenutniCilji.CasovniOkvir dni (@Math.Round(Model.TrenutniCilji.CasovniOkvir / 7.0, 1) tednov)</p>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <h6>Napredek</h6>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: @Model.Napredek%"
-                                 aria-valuenow="@Model.Napredek" aria-valuemin="0" aria-valuemax="100">
-                                @Model.Napredek%
+                        <h6><i class="bi bi-lightning-fill me-2"></i>Kalorični podatki</h6>
+                        <p><strong>BMR (bazalni metabolizem):</strong> @Model.TrenutniCilji.BMR.ToString("F0") kcal</p>
+                        <p><strong>TDEE (dnevna poraba):</strong> @Model.TrenutniCilji.TDEE.ToString("F0") kcal</p>
+                        <p><strong>Priporočen dnevni vnos:</strong> @Model.TrenutniCilji.DnevneKalorije kcal</p>
+                        <div class="progress mt-3">
+                            <div class="progress-bar @(Model.Napredek > 100 ? "bg-danger" : "bg-success")"
+                                 role="progressbar"
+                                 style="width: @(Math.Min(Model.Napredek, 100))%"
+                                 aria-valuenow="@Model.Napredek"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100">
+                                @Model.Napredek.ToString("F1")%
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">
+                    <i class="bi bi-info-circle me-2"></i>
+                    @if (Model.TrenutniCilji.CiljnaTeza < Model.UporabnikProfil?.Teza)
+                    {
+                        <span>Cilj: izguba @Math.Abs(Model.TrenutniCilji.CiljnaTeza - Model.UporabnikProfil.Teza).ToString("F1") kg v @Model.TrenutniCilji.CasovniOkvir dneh</span>
+                    }
+                    else
+                    {
+                        <span>Cilj: pridobitev @Math.Abs(Model.TrenutniCilji.CiljnaTeza - Model.UporabnikProfil.Teza).ToString("F1") kg v @Model.TrenutniCilji.CasovniOkvir dneh</span>
+                    }
+                </small>
             </div>
         </div>
     }
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title mb-0">Nastavi nove cilje</h5>
+            <h5 class="card-title mb-0">
+                <i class="bi bi-gear-fill me-2"></i>
+                @(Model.TrenutniCilji == null ? "Nastavi cilje" : "Posodobi cilje")
+            </h5>
         </div>
         <div class="card-body">
-            <form method="post">
-                <div class="form-group mb-3">
-                    <label asp-for="NoviCilji.CiljnaTeza">Ciljna teža (kg)</label>
-                    <input asp-for="NoviCilji.CiljnaTeza" class="form-control" />
-                    <span asp-validation-for="NoviCilji.CiljnaTeza" class="text-danger"></span>
+            <form method="post" id="ciljForm" onsubmit="return validateForm()">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Input.CiljnaTeza" class="form-label">Ciljna teža (kg)</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-weight"></i></span>
+                            <input asp-for="Input.CiljnaTeza" class="form-control" type="number" step="0.1" min="30" max="300" required />
+                        </div>
+                        <span asp-validation-for="Input.CiljnaTeza" class="text-danger"></span>
+                        @if (Model.UporabnikProfil != null)
+                        {
+                            var minTeza = Model.UporabnikProfil.Teza * 0.7;
+                            var maxTeza = Model.UporabnikProfil.Teza * 1.3;
+                            <small class="form-text text-muted">
+                                Dovoljena ciljna teža mora biti med @minTeza.ToString("F1") kg in @maxTeza.ToString("F1") kg
+                                (±30% od vaše trenutne teže).
+                            </small>
+                        }
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Input.TedenIzgubaKg" class="form-label">Željena tedenska sprememba (kg)</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-graph-up"></i></span>
+                            <input asp-for="Input.TedenIzgubaKg" class="form-control" type="number" step="0.1" min="0.1" max="1.0" required />
+                        </div>
+                        <span asp-validation-for="Input.TedenIzgubaKg" class="text-danger"></span>
+                        <small class="form-text text-muted">Priporočena tedenska sprememba je med 0.5 in 1 kg.</small>
+                    </div>
                 </div>
 
-                <div class="form-group mb-3">
-                    <label asp-for="NoviCilji.CasovniOkvir">Časovni okvir (dni)</label>
-                    <input asp-for="NoviCilji.CasovniOkvir" class="form-control" />
-                    <span asp-validation-for="NoviCilji.CasovniOkvir" class="text-danger"></span>
+                <div class="mb-3">
+                    <label asp-for="Input.NivoAktivnosti" class="form-label">Nivo aktivnosti</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-activity"></i></span>
+                        <select asp-for="Input.NivoAktivnosti" class="form-select" required>
+                            <option value="sedentary">Sedeče delo (malo ali nič vadbe)</option>
+                            <option value="light">Lahka aktivnost (vadba 1-3x na teden)</option>
+                            <option value="moderate">Zmerna aktivnost (vadba 3-5x na teden)</option>
+                            <option value="active">Visoka aktivnost (vadba 6-7x na teden)</option>
+                            <option value="very_active">Zelo visoka aktivnost (športnik, fizično delo)</option>
+                        </select>
+                    </div>
+                    <span asp-validation-for="Input.NivoAktivnosti" class="text-danger"></span>
                 </div>
 
-                <div class="form-group mb-3">
-                    <label asp-for="NoviCilji.DnevneKalorije">Dnevne kalorije (kcal)</label>
-                    <input asp-for="NoviCilji.DnevneKalorije" class="form-control" />
-                    <span asp-validation-for="NoviCilji.DnevneKalorije" class="text-danger"></span>
+                <div class="alert alert-info">
+                    <h6 class="alert-heading"><i class="bi bi-info-circle-fill me-2"></i>Nasveti za zdravo spreminjanje teže:</h6>
+                    <ul class="mb-0">
+                        <li>Priporočena tedenska sprememba teže je med 0.5 in 1 kg</li>
+                        <li>Prehitre spremembe teže lahko škodujejo vašemu zdravju</li>
+                        <li>Kombinirajte prehrano z redno telesno aktivnostjo</li>
+                        <li>Pijte dovolj vode (vsaj 2L na dan)</li>
+                        <li>Poskrbite za zadosten spanec (7-9 ur)</li>
+                    </ul>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Shrani cilje</button>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save me-2"></i>
+                        @(Model.TrenutniCilji == null ? "Nastavi cilje" : "Posodobi cilje")
+                    </button>
+                    <a href="/Dashboard" class="btn btn-outline-secondary ms-2">
+                        <i class="bi bi-arrow-left me-2"></i>Nazaj
+                    </a>
+                </div>
             </form>
         </div>
     </div>
 
     @if (!string.IsNullOrEmpty(Model.Opozorilo))
     {
-        <div class="alert alert-warning mt-3" role="alert">
+        <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
             @Model.Opozorilo
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            // Nastavi privzeto vrednost za ciljno težo, če je prazna
+            if (!$('#Input_CiljnaTeza').val()) {
+                $('#Input_CiljnaTeza').val('@Model.UporabnikProfil?.Teza.ToString("F1")');
+            }
+
+            // Validacija forme pred pošiljanjem
+            function validateForm() {
+                var form = $('#ciljForm');
+                if (!form.valid()) {
+                    return false;
+                }
+                return true;
+            }
+
+            // Posodobi progress bar
+            function updateProgressBar(progress) {
+                var progressBar = $('.progress-bar');
+                var width = Math.min(progress, 100);
+                progressBar.css('width', width + '%');
+                progressBar.text(progress.toFixed(1) + '%');
+                progressBar.toggleClass('bg-danger', progress > 100);
+                progressBar.toggleClass('bg-success', progress <= 100);
+            }
+
+            // Inicializacija tooltipov
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}

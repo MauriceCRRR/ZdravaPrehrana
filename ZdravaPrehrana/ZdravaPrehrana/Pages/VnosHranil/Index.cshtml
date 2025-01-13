@@ -81,6 +81,49 @@
         </div>
 
         <div class="col-md-4">
+            <!-- Nov razdelek za cilje -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Dnevni cilj</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.TrenutniCilji != null)
+                    {
+                        <div class="mb-3">
+                            <p><strong>Priporočen dnevni vnos:</strong> @Model.TrenutniCilji.DnevneKalorije kcal</p>
+                            <p><strong>Današnji vnos:</strong> @(Model.DnevniVnos?.Kalorije ?? 0) kcal</p>
+                            <p>
+                                <strong>Preostale kalorije:</strong>
+                                <span class="@(Model.PreostalKalorije < 0 ? "text-danger" : "text-success")">
+                                    @Model.PreostalKalorije kcal
+                                </span>
+                            </p>
+                        </div>
+                        <div class="progress">
+                            @{
+                                var odstotek = (double)(Model.DnevniVnos?.Kalorije ?? 0) / Model.TrenutniCilji.DnevneKalorije * 100;
+                                var barvaTraka = odstotek > 100 ? "bg-danger" : "bg-success";
+                            }
+                            <div class="progress-bar @barvaTraka" role="progressbar"
+                                 style="width: @Math.Min(odstotek, 100)%"
+                                 aria-valuenow="@odstotek"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100">
+                                @odstotek.ToString("F1")%
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info mb-0">
+                            <p class="mb-0">Najprej nastavite svoje prehranske cilje.</p>
+                            <a href="/Cilji/Index" class="btn btn-primary btn-sm mt-2">Nastavi cilje</a>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Statistika -->
             <div class="card">
                 <div class="card-header">
                     <h5 class="mb-0">Statistika</h5>

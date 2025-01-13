@@ -14,9 +14,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Register services
-builder.Services.AddScoped<IUporabnikService, UporabnikService>();
 builder.Services.AddScoped<UpravljalecJedilnika>();
-builder.Services.AddScoped<UpravljalecCiljev>();
+builder.Services.AddScoped<IUporabnikService, UporabnikService>();
+builder.Services.AddScoped<IUpravljalecCiljevService, UpravljalecCiljevService>();
 builder.Services.AddScoped<UpravljalecHranil>();
 builder.Services.AddScoped<UpravljalecNakupovanja>();
 builder.Services.AddScoped<UpravljalecNasvetov>();
@@ -30,6 +30,7 @@ builder.Services.AddLogging(logging =>
     logging.ClearProviders();
     logging.AddConsole();
     logging.AddDebug();
+    logging.SetMinimumLevel(LogLevel.Information);
 });
 
 // Nastavitve avtentikacije
