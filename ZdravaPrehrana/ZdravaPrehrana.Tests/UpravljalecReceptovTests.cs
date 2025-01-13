@@ -62,49 +62,53 @@ namespace ZdravaPrehrana.Tests
         [TestMethod]
         public async Task Test_DodajRecept_ValidInput_CreatedSuccessfully()
         {
-            // Preveri če uporabnik obstaja
-            var uporabnik = await _context.Uporabniki.FindAsync(1);
-            Assert.IsNotNull(uporabnik, "Uporabnik mora obstajati pred testom");
-
-            // Najdi sestavino
-            var sestavina = await _context.Sestavine.FindAsync(1);
-            Assert.IsNotNull(sestavina, "Sestavina mora obstajati pred testom");
-
-            // Arrange
-            var receptSestavina = new ReceptSestavina
+            try
             {
-                SestavinaId = sestavina.Id,
-                Sestavina = sestavina,
-                Kolicina = 100,
-                Enota = "g"
-            };
+                // Preveri če uporabnik obstaja
+                var uporabnik = await _context.Uporabniki.FindAsync(1);
+                Assert.IsNotNull(uporabnik, "Uporabnik mora obstajati pred testom");
 
-            var recept = new Recept
+                // Najdi sestavino
+                var sestavina = await _context.Sestavine.FindAsync(1);
+                Assert.IsNotNull(sestavina, "Sestavina mora obstajati pred testom");
+
+                // Arrange
+                var receptSestavina = new ReceptSestavina
+                {
+                    SestavinaId = sestavina.Id,
+                    Kolicina = 100,
+                    Enota = "g"
+                };
+
+                var recept = new Recept
+                {
+                    Naziv = "Test recept",
+                    Postopek = "Test postopek priprave",
+                    Kalorije = 500,
+                    CasPriprave = 30,
+                    JeJaven = true,
+                    AvtorId = uporabnik.Id,
+                    DatumUstvarjanja = DateTime.Now,
+                    ReceptSestavine = new List<ReceptSestavina> { receptSestavina }
+                };
+
+                // Act
+                var rezultat = await _upravljalec.DodajRecept(recept, uporabnik.Id);
+
+                // Assert
+                Assert.IsTrue(rezultat, "Dodajanje recepta ni uspelo");
+                var shranjeniRecept = await _context.Recepti
+                    .Include(r => r.ReceptSestavine)
+                    .ThenInclude(rs => rs.Sestavina)
+                    .FirstOrDefaultAsync(r => r.Naziv == "Test recept");
+                Assert.IsNotNull(shranjeniRecept);
+                Assert.AreEqual(recept.Naziv, shranjeniRecept.Naziv);
+                Assert.AreEqual(1, shranjeniRecept.ReceptSestavine.Count);
+            }
+            catch (Exception ex)
             {
-                Naziv = "Test recept",
-                Postopek = "Test postopek priprave",
-                Kalorije = 500,
-                CasPriprave = 30,
-                JeJaven = true,
-                AvtorId = uporabnik.Id,
-                DatumUstvarjanja = DateTime.Now,
-                Avtor = uporabnik,
-                ReceptSestavine = new List<ReceptSestavina> { receptSestavina }
-            };
-
-            // Act
-            var rezultat = await _upravljalec.DodajRecept(recept, uporabnik.Id);
-
-            // Assert
-            Assert.IsTrue(rezultat);
-            var shranjeniRecept = await _context.Recepti
-                .Include(r => r.ReceptSestavine)
-                .Include(r => r.Avtor)
-                .FirstOrDefaultAsync(r => r.Naziv == "Test recept");
-            Assert.IsNotNull(shranjeniRecept);
-            Assert.AreEqual(recept.Naziv, shranjeniRecept.Naziv);
-            Assert.AreEqual(recept.Postopek, shranjeniRecept.Postopek);
-            Assert.AreEqual(1, shranjeniRecept.ReceptSestavine.Count);
+                Assert.Fail($"Test je povzročil izjemo: {ex.Message}\nStack trace: {ex.StackTrace}");
+            }
         }
 
         [TestMethod]
