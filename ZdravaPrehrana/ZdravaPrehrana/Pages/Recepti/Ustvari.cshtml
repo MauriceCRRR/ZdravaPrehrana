@@ -1,0 +1,131 @@
+﻿@page
+@model ZdravaPrehrana.Pages.Recepti.UstvariModel
+@{
+    ViewData["Title"] = "Nov recept";
+}
+
+<div class="container">
+    <h2 class="mb-4">Nov recept</h2>
+
+    <form method="post">
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label asp-for="Recept.Naziv" class="form-label">Naziv recepta</label>
+                            <input asp-for="Recept.Naziv" class="form-control" />
+                            <span asp-validation-for="Recept.Naziv" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Recept.Postopek" class="form-label">Postopek priprave</label>
+                            <textarea asp-for="Recept.Postopek" class="form-control" rows="6"></textarea>
+                            <span asp-validation-for="Recept.Postopek" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Recept.CasPriprave" class="form-label">Čas priprave (minute)</label>
+                                    <input asp-for="Recept.CasPriprave" type="number" class="form-control" min="1" />
+                                    <span asp-validation-for="Recept.CasPriprave" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Recept.Kalorije" class="form-label">Kalorije</label>
+                                    <input asp-for="Recept.Kalorije" type="number" class="form-control" min="0" />
+                                    <span asp-validation-for="Recept.Kalorije" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input asp-for="Recept.JeJaven" class="form-check-input" type="checkbox" />
+                                <label asp-for="Recept.JeJaven" class="form-check-label">
+                                    Javno dostopen recept
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Sestavine</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="sestavine-container">
+                            @for (int i = 0; i < Model.ReceptSestavine.Count; i++)
+                            {
+                                <div class="sestavina-vnos mb-2">
+                                    <div class="input-group">
+                                        <input asp-for="ReceptSestavine[i].Sestavina.Naziv" class="form-control" placeholder="Sestavina" />
+                                        <input asp-for="ReceptSestavine[i].Kolicina" type="number" class="form-control" placeholder="Količina" step="0.1" min="0" />
+                                        <input asp-for="ReceptSestavine[i].Enota" class="form-control" placeholder="Enota" />
+                                        <button type="button" class="btn btn-outline-danger" onclick="odstraniSestavino(this)">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <button type="button" class="btn btn-outline-primary w-100 mt-2" onclick="dodajSestavino()">
+                            <i class="bi bi-plus"></i> Dodaj sestavino
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Shrani recept</button>
+                <a asp-page="./Index" class="btn btn-outline-secondary">Nazaj</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            console.log('Form submitting...', {
+                naziv: document.querySelector('[name="Recept.Naziv"]').value,
+                sestavine: Array.from(document.querySelectorAll('[name^="ReceptSestavine"]')).map(el => el.value)
+            });
+        });
+
+        function dodajSestavino() {
+            const container = document.getElementById('sestavine-container');
+            const index = container.children.length;
+            console.log('Dodajam sestavino z indeksom:', index);
+            
+            const sestavinaHtml = `
+                <div class="sestavina-vnos mb-2">
+                    <div class="input-group">
+                        <input name="ReceptSestavine[${index}].Sestavina.Naziv" class="form-control" placeholder="Sestavina" />
+                        <input name="ReceptSestavine[${index}].Kolicina" type="number" class="form-control" placeholder="Količina" step="0.1" min="0" />
+                        <input name="ReceptSestavine[${index}].Enota" class="form-control" placeholder="Enota" />
+                        <button type="button" class="btn btn-outline-danger" onclick="odstraniSestavino(this)">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', sestavinaHtml);
+        }
+
+        function odstraniSestavino(btn) {
+            const element = btn.closest('.sestavina-vnos');
+            console.log('Odstranjujem sestavino:', element.querySelector('[name$="Naziv"]').value);
+            element.remove();
+        }
+    </script>
+}

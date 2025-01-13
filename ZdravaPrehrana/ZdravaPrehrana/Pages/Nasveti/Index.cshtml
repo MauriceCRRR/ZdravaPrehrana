@@ -1,0 +1,115 @@
+﻿@page
+@model ZdravaPrehrana.Pages.Nasveti.IndexModel
+@{
+    ViewData["Title"] = "Prehranski nasveti";
+}
+<div class="container">
+    <h2 class="mb-4">Prehranski nasveti</h2>
+    <!-- Obrazec za novo vprašanje -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">Postavite vprašanje strokovnjaku</h5>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(Model.Sporocilo))
+            {
+                <div class="alert alert-info mb-3">@Model.Sporocilo</div>
+            }
+            <form method="post">
+                <div class="form-group">
+                    <textarea asp-for="NovoVprasanje" class="form-control" rows="3"
+                              placeholder="Vpišite vaše vprašanje..." required></textarea>
+                    <span asp-validation-for="NovoVprasanje" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Pošlji vprašanje</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Seznam vprašanj in odgovorov -->
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Vaša vprašanja in odgovori</h5>
+            <span class="badge bg-primary">@(Model.Nasveti?.Count ?? 0) vprašanj</span>
+        </div>
+        <div class="card-body">
+            @if (Model.Nasveti?.Any() == true)
+            {
+                foreach (var nasvet in Model.Nasveti)
+                {
+                    <div class="mb-4 nasvet-container">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-2">Vprašanje:</h6>
+                            <div>
+                                <span class="badge @(nasvet.Status == StatusNasveta.Odgovorjen ? "bg-success" : "bg-warning")">
+                                    @(nasvet.Status == StatusNasveta.Odgovorjen ? "Odgovorjeno" : "Čaka")
+                                </span>
+                                <small class="text-muted ms-2">@nasvet.DatumVprasanja.ToString("dd.MM.yyyy HH:mm")</small>
+                            </div>
+                        </div>
+                        <div class="border-start border-primary ps-3 mb-3">
+                            <p class="mb-0">@nasvet.Vprasanje</p>
+                        </div>
+
+                        @if (nasvet.Status == StatusNasveta.Odgovorjen)
+                        {
+                            <div class="ms-4 mt-3 odgovor-container">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-2">Odgovor strokovnjaka:</h6>
+                                    <small class="text-muted">@nasvet.DatumOdgovora?.ToString("dd.MM.yyyy HH:mm")</small>
+                                </div>
+                                <div class="border-start border-success ps-3">
+                                    <p class="mb-0">@nasvet.Odgovor</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="ms-4 mt-2">
+                                <div class="alert alert-warning mb-0">
+                                    <i class="bi bi-clock"></i>
+                                    <span class="ms-2">Čaka na odgovor strokovnjaka</span>
+                                </div>
+                            </div>
+                        }
+                        <hr class="mt-4" />
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Še nimate postavljenih vprašanj. Postavite prvo vprašanje zgoraj!
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Avtomatsko povečevanje textarea glede na vsebino
+        document.querySelector('textarea').addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+    </script>
+}
+
+<style>
+    .nasvet-container {
+        transition: all 0.3s ease;
+    }
+
+        .nasvet-container:hover {
+            background-color: #f8f9fa;
+        }
+
+    .odgovor-container {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+    }
+</style>

@@ -1,0 +1,72 @@
+﻿@page
+@model ZdravaPrehrana.Pages.Cilji.IndexModel
+@{
+    ViewData["Title"] = "Prehranski cilji";
+}
+
+<div class="container">
+    <h2 class="mb-4">Prehranski cilji</h2>
+
+    @if (Model.TrenutniCilji != null)
+    {
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Trenutni cilji</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Ciljna teža:</strong> @Model.TrenutniCilji.CiljnaTeza kg</p>
+                        <p><strong>Časovni okvir:</strong> @Model.TrenutniCilji.CasovniOkvir dni</p>
+                        <p><strong>Dnevne kalorije:</strong> @Model.TrenutniCilji.DnevneKalorije kcal</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Napredek</h6>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: @Model.Napredek%"
+                                 aria-valuenow="@Model.Napredek" aria-valuemin="0" aria-valuemax="100">
+                                @Model.Napredek%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Nastavi nove cilje</h5>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <div class="form-group mb-3">
+                    <label asp-for="NoviCilji.CiljnaTeza">Ciljna teža (kg)</label>
+                    <input asp-for="NoviCilji.CiljnaTeza" class="form-control" />
+                    <span asp-validation-for="NoviCilji.CiljnaTeza" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="NoviCilji.CasovniOkvir">Časovni okvir (dni)</label>
+                    <input asp-for="NoviCilji.CasovniOkvir" class="form-control" />
+                    <span asp-validation-for="NoviCilji.CasovniOkvir" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="NoviCilji.DnevneKalorije">Dnevne kalorije (kcal)</label>
+                    <input asp-for="NoviCilji.DnevneKalorije" class="form-control" />
+                    <span asp-validation-for="NoviCilji.DnevneKalorije" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Shrani cilje</button>
+            </form>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.Opozorilo))
+    {
+        <div class="alert alert-warning mt-3" role="alert">
+            @Model.Opozorilo
+        </div>
+    }
+</div>

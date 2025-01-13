@@ -15,10 +15,6 @@ namespace ZdravaPrehrana.Boundary {
             throw new System.NotImplementedException("Not implemented");
         }
 
-        private JedilnikOkno odpreJedilnikOkno;
-        private NakupovalniSeznamOkno odpreNakupovalniSeznamOkno;
-        private NasvetiOkno odpreNasvetiOkno;
-        private CiljiOkno odpreCiljiOkno;
         private HranilaOkno odpreHranilaOkno;
         private ReceptiOkno odpreReceptiOkno;
     }

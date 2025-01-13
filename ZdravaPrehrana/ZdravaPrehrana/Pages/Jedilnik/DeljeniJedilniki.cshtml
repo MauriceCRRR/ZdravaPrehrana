@@ -1,0 +1,122 @@
+﻿@page
+@model ZdravaPrehrana.Pages.Jedilnik.DeljeniJedilnikiModel
+@{
+    ViewData["Title"] = "Deljeni jedilniki";
+}
+
+<div class="container">
+    <h2 class="mb-4">Deljeni jedilniki</h2>
+
+    @if (Model.DeljeniJedilniki?.Any() == true)
+    {
+        @foreach (var jedilnik in Model.DeljeniJedilniki)
+        {
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">@jedilnik.Naziv</h5>
+                    <div class="text-muted">
+                        <small>Avtor: @jedilnik.Uporabnik.UporabniskoIme</small>
+                        <span class="mx-2">•</span>
+                        <small>Deljeno: @jedilnik.DatumDeljenja?.ToShortDateString()</small>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Prikaz obrokov -->
+                    @if (jedilnik.Obroki.Any())
+                    {
+                        <h6 class="mb-3">Obroki:</h6>
+                        @foreach (var obrok in jedilnik.Obroki.OrderBy(o => o.Cas))
+                        {
+                            <div class="mb-3">
+                                <strong>@obrok.Naziv - @obrok.Cas.ToShortTimeString()</strong>
+                                @if (obrok.Recepti.Any())
+                                {
+                                    <ul class="list-unstyled ms-3 mb-0">
+                                        @foreach (var recept in obrok.Recepti)
+                                        {
+                                            <li>• @recept.Naziv</li>
+                                        }
+                                    </ul>
+                                }
+                            </div>
+                        }
+                    }
+
+                    <!-- Ocene in komentarji -->
+                    <div class="border-top pt-3 mt-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Ocene in komentarji</h6>
+                                @if (jedilnik.Ocene.Any())
+                                {
+                                    foreach (var ocena in jedilnik.Ocene.OrderByDescending(o => o.DatumOcene))
+                                    {
+                                        <div class="mb-2">
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    @for (int i = 0; i < ocena.Vrednost; i++)
+                                                    {
+                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                    }
+                                                    <small class="ms-2">@ocena.Uporabnik.UporabniskoIme</small>
+                                                </div>
+                                                <small class="text-muted">@ocena.DatumOcene.ToShortDateString()</small>
+                                            </div>
+                                            @if (!string.IsNullOrEmpty(ocena.Komentar))
+                                            {
+                                                <p class="mb-0 small">@ocena.Komentar</p>
+                                            }
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <p class="text-muted">Še ni ocen.</p>
+                                }
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <!-- Ločena obrazca -->
+                                <form method="post" asp-page-handler="OceniJedilnik" asp-route-jedilnikId="@jedilnik.Id">
+                                    <div class="mb-3">
+                                        <label class="form-label">Ocena</label>
+                                        <select class="form-select" name="ocenaVrednost" required>
+                                            <option value="">Izberi oceno...</option>
+                                            @for (int i = 1; i <= 5; i++)
+                                            {
+                                                <option value="@i">@i zvezdic</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Komentar</label>
+                                        <textarea class="form-control" name="ocenaKomentar" rows="2"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Oddaj oceno</button>
+                                </form>
+
+                                <!-- Ločen obrazec za shranjevanje -->
+                                <form method="post" asp-page-handler="ShraniJedilnik" asp-route-jedilnikId="@jedilnik.Id">
+                                    <button type="submit" class="btn btn-outline-success">
+                                        <i class="bi bi-save"></i> Shrani kopijo
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Trenutno ni deljenih jedilnikov.
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,35 +1,45 @@
 using System;
 using System.Collections.Generic;
-using ZdravaPrehrana.Entitete;
-using ZdravaPrehrana.Controllers;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ZdravaPrehrana.Entitete
 {
     public class Recept
     {
-        public string naziv;
-        public List<Sestavina> sestavine;
-        public string postopek;
-        public int kalorije;
-        public int cas_priprave;
+        [Key]
+        public int Id { get; set; }
 
-        public void DodajSestavino(ref Sestavina sestavina)
-        {
-            throw new System.NotImplementedException("Not implemented");
-        }
+        [Required(ErrorMessage = "Naziv recepta je obvezen")]
+        public string Naziv { get; set; }
 
-        public bool UrediRecept()
-        {
-            throw new System.NotImplementedException("Not implemented");
-        }
+        public virtual List<ReceptSestavina> ReceptSestavine { get; set; } = new List<ReceptSestavina>();
 
-        public double IzracunHranilneVrednosti()
-        {
-            throw new System.NotImplementedException("Not implemented");
-        }
+        [Required(ErrorMessage = "Postopek priprave je obvezen")]
+        public string Postopek { get; set; }
 
-        public Feedback jeZaRecept;
-        public UpravljalecReceptov upravlja;
-        public Jedilnik vsebujeRecept;
+        [Required]
+        public int Kalorije { get; set; }
+
+        [Required]
+        [Display(Name = "Èas priprave (minute)")]
+        public int CasPriprave { get; set; }
+
+        public virtual List<Ocena> Ocene { get; set; } = new List<Ocena>();
+
+        // Te relacije ne smejo biti Required
+        public virtual Jedilnik? Jedilnik { get; set; }
+        public int? JedilnikId { get; set; }
+
+        public virtual ICollection<Obrok> Obroki { get; set; } = new List<Obrok>();
+
+        [Required]
+        public int AvtorId { get; set; }
+        public virtual Uporabnik? Avtor { get; set; }
+
+        [Required]
+        public bool JeJaven { get; set; } = false;
+
+        public DateTime DatumUstvarjanja { get; set; } = DateTime.Now;
     }
 }

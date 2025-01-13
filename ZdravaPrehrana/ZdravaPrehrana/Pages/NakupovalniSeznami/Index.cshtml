@@ -1,0 +1,135 @@
+﻿@page
+@model ZdravaPrehrana.Pages.NakupovalniSeznami.IndexModel
+@{
+    ViewData["Title"] = "Nakupovalni seznam";
+}
+
+<div class="container">
+    <div class="row">
+        <!-- Stranski meni s seznami -->
+        <div class="col-md-3">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Moji seznami</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    @if (Model.VsiSeznami?.Any() == true)
+                    {
+                        @foreach (var seznam in Model.VsiSeznami)
+                        {
+                            <a href="/NakupovalniSeznami/Index?seznamId=@seznam.Id"
+                               class="list-group-item list-group-item-action @(Model.TrenutniSeznam?.Id == seznam.Id ? "active" : "")">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">@seznam.Naziv</h6>
+                                    <small>@seznam.DatumKreiranja.ToShortDateString()</small>
+                                </div>
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <div class="list-group-item">Ni shranjenih seznamov</div>
+                    }
+                </div>
+            </div>
+
+            <!-- Obrazec za nov seznam -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Nov seznam</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-page-handler="UstvariSeznam">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" asp-for="NoviSeznamNaziv" placeholder="Naziv seznama" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Ustvari seznam</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Glavni del s seznamom -->
+        <div class="col-md-9">
+            @if (Model.TrenutniSeznam != null)
+            {
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">@Model.TrenutniSeznam.Naziv</h5>
+                    </div>
+                    <div class="card-body">
+                        @if (Model.TrenutniSeznam.Postavke?.Any() == true)
+                        {
+                            <ul class="list-group mb-4">
+                                @foreach (var postavka in Model.TrenutniSeznam.Postavke)
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                            @(postavka.JeObkljukana ? "checked" : "")
+                                                   onchange="document.getElementById('oznaci-@postavka.Id').submit()" />
+                                            <label class="form-check-label @(postavka.JeObkljukana ? "text-muted text-decoration-line-through" : "")">
+                                                @postavka.Naziv (@postavka.Kolicina @postavka.Enota)
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <form id="oznaci-@postavka.Id" method="post" asp-page-handler="OznaciIzdelek"
+                                                  asp-route-seznamId="@Model.TrenutniSeznam.Id" asp-route-naziv="@postavka.Naziv" style="display:none;"></form>
+                                            <button class="btn btn-sm btn-danger"
+                                                    onclick="if(confirm('Ali ste prepričani?')) document.getElementById('odstrani-@postavka.Id').submit();">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                            <form id="odstrani-@postavka.Id" method="post" asp-page-handler="OdstraniIzdelek"
+                                                  asp-route-seznamId="@Model.TrenutniSeznam.Id" asp-route-naziv="@postavka.Naziv" style="display:none;"></form>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p class="mb-4">Seznam je prazen.</p>
+                        }
+                        <!-- Obrazec za dodajanje izdelka -->
+                        <form method="post" asp-page-handler="DodajIzdelek" asp-route-seznamId="@Model.TrenutniSeznam.Id">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" asp-for="NoviIzdelek.Naziv" placeholder="Naziv izdelka" required />
+                                    <span asp-validation-for="NoviIzdelek.Naziv" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="number" step="0.01" class="form-control" asp-for="NoviIzdelek.Kolicina" placeholder="Količina" required />
+                                    <span asp-validation-for="NoviIzdelek.Kolicina" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" asp-for="NoviIzdelek.Enota" placeholder="Enota" required />
+                                    <span asp-validation-for="NoviIzdelek.Enota" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary w-100">Dodaj</button>
+                                </div>
+                            </div>
+                            @if (!ModelState.IsValid)
+                            {
+                                <div class="alert alert-danger mt-3">
+                                    <ul>
+                                        @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                                        {
+                                            <li>@error.ErrorMessage</li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        </form>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    Izberite seznam ali ustvarite novega.
+                </div>
+            }
+        </div>
+    </div>
+</div>

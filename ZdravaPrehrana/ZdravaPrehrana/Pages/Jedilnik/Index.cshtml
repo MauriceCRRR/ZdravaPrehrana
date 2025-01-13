@@ -1,0 +1,238 @@
+﻿@page
+@using ZdravaPrehrana.Entitete
+@model ZdravaPrehrana.Pages.Jedilnik.IndexModel
+@{
+    ViewData["Title"] = "Jedilnik";
+}
+<div class="container">
+    <div class="row">
+        <!-- Stranski meni z jedilniki -->
+        <div class="col-md-3">
+            <!-- Gumb za ogled deljenih jedilnikov -->
+            <div class="mb-4">
+                <a href="/Jedilnik/DeljeniJedilniki" class="btn btn-outline-primary w-100">
+                    <i class="bi bi-share"></i> Oglej si deljene jedilnike
+                </a>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Moji jedilniki</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    @if (Model.MojiJedilniki?.Any() == true)
+                    {
+                        @foreach (var jedilnik in Model.MojiJedilniki)
+                        {
+                            <a href="/Jedilnik?id=@jedilnik.Id"
+                               class="list-group-item list-group-item-action @(Model.TrenutniJedilnik?.Id == jedilnik.Id ? "active" : "")">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        @jedilnik.Naziv
+                                        @if (jedilnik.JeDeljiv)
+                                        {
+                                            <span class="badge bg-success ms-1">Deljen</span>
+                                        }
+                                    </h6>
+                                    <small>@jedilnik.DatumKreiranja.ToShortDateString()</small>
+                                </div>
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <div class="list-group-item">Ni shranjenih jedilnikov</div>
+                    }
+                </div>
+            </div>
+
+            <!-- Obrazec za ustvarjanje novega jedilnika -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Ustvari nov jedilnik</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="form-group mb-3">
+                            <label asp-for="NoviJedilnikNaziv">Naziv jedilnika</label>
+                            <input asp-for="NoviJedilnikNaziv" class="form-control" placeholder="Vnesi naziv jedilnika" />
+                            <span asp-validation-for="NoviJedilnikNaziv" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ustvari jedilnik</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Glavni del z vsebino jedilnika -->
+        <div class="col-md-9">
+            @if (Model.TrenutniJedilnik != null)
+            {
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <h5 class="mb-0">@Model.TrenutniJedilnik.Naziv</h5>
+                                @if (Model.TrenutniJedilnik.JeDeljiv)
+                                {
+                                    <span class="badge bg-success ms-2">Deljen</span>
+                                }
+                            </div>
+                            <div>
+                                @if (!Model.TrenutniJedilnik.JeDeljiv)
+                                {
+                                    <form method="post" asp-page-handler="DeliJedilnik"
+                                          asp-route-jedilnikId="@Model.TrenutniJedilnik.Id" class="d-inline">
+                                        <button type="submit" class="btn btn-outline-primary btn-sm me-2">
+                                            <i class="bi bi-share"></i> Deli jedilnik
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <form method="post" asp-page-handler="PrekiniDeljenje"
+                                          asp-route-jedilnikId="@Model.TrenutniJedilnik.Id" class="d-inline">
+                                        <button type="submit" class="btn btn-outline-secondary btn-sm me-2">
+                                            <i class="bi bi-x-circle"></i> Prekini deljenje
+                                        </button>
+                                    </form>
+                                }
+                                <span>Ustvarjeno: @Model.TrenutniJedilnik.DatumKreiranja.ToShortDateString()</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <!-- Prikaz obstoječih obrokov -->
+                        @if (Model.TrenutniJedilnik.Obroki.Any())
+                        {
+                            foreach (var obrok in Model.TrenutniJedilnik.Obroki.OrderBy(o => o.Cas))
+                            {
+                                <div class="card mb-3">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h6 class="mb-0">@obrok.Naziv - @obrok.Cas.ToShortTimeString()</h6>
+                                        <div>
+                                            <button class="btn btn-sm btn-outline-primary me-2" data-bs-toggle="collapse"
+                                                    data-bs-target="#recepti-@obrok.Id">
+                                                Recepti
+                                            </button>
+                                            <button class="btn btn-sm btn-danger"
+                                                    onclick="if(confirm('Ali ste prepričani?')) document.getElementById('removeObrok-@obrok.Id').submit();">
+                                                Izbriši
+                                            </button>
+                                            <form id="removeObrok-@obrok.Id" method="post"
+                                                  asp-page-handler="OdstraniObrok"
+                                                  asp-route-jedilnikId="@Model.TrenutniJedilnik.Id"
+                                                  asp-route-obrokId="@obrok.Id">
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="collapse" id="recepti-@obrok.Id">
+                                        <div class="card-body">
+                                            @if (obrok.Recepti.Any())
+                                            {
+                                                <ul class="list-group">
+                                                    @foreach (var recept in obrok.Recepti)
+                                                    {
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            @recept.Naziv
+                                                            <button class="btn btn-sm btn-outline-danger"
+                                                                    onclick="if(confirm('Ali ste prepričani?')) document.getElementById('removeRecept-@obrok.Id-@recept.Id').submit();">
+                                                                Odstrani
+                                                            </button>
+                                                            <form id="removeRecept-@obrok.Id-@recept.Id" method="post"
+                                                                  asp-page-handler="OdstraniRecept"
+                                                                  asp-route-obrokId="@obrok.Id"
+                                                                  asp-route-receptId="@recept.Id"
+                                                                  style="display:none;">
+                                                            </form>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            }
+                                            else
+                                            {
+                                                <p>Ni dodanih receptov.</p>
+                                            }
+
+                                            <!-- Obrazec za dodajanje recepta -->
+                                            <form method="post" asp-page-handler="DodajRecept"
+                                                  asp-route-obrokId="@obrok.Id"
+                                                  class="mt-3">
+                                                <div class="input-group">
+                                                    <select class="form-select" name="receptId" required>
+                                                        <option value="">Izberi recept...</option>
+                                                        @foreach (var recept in Model.VsiRecepti)
+                                                        {
+                                                            <option value="@recept.Id">@recept.Naziv</option>
+                                                        }
+                                                    </select>
+                                                    <button type="submit" class="btn btn-outline-primary">
+                                                        Dodaj recept
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p>Ni dodanih obrokov.</p>
+                        }
+
+                        <!-- Obrazec za dodajanje novega obroka -->
+                        <div class="mt-4">
+                            <h6>Dodaj nov obrok</h6>
+                            <form method="post" asp-page-handler="DodajObrok"
+                                  asp-route-jedilnikId="@Model.TrenutniJedilnik.Id">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="NoviObrok.Naziv" class="form-label">Naziv obroka</label>
+                                        <input asp-for="NoviObrok.Naziv" class="form-control"
+                                               placeholder="npr. Zajtrk, Kosilo..." />
+                                        <span asp-validation-for="NoviObrok.Naziv" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label asp-for="NoviObrok.Cas" class="form-label">Čas obroka</label>
+                                        <input asp-for="NoviObrok.Cas" type="time" class="form-control" />
+                                        <span asp-validation-for="NoviObrok.Cas" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-2 mb-3 d-flex align-items-end">
+                                        <button type="submit" class="btn btn-primary w-100">Dodaj</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    Izberite jedilnik ali ustvarite novega.
+                </div>
+            }
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.Sporocilo))
+    {
+        <div class="alert alert-info mt-3" role="alert">
+            @Model.Sporocilo
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+}

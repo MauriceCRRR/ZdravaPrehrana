@@ -1,0 +1,48 @@
+﻿@page
+@model ZdravaPrehrana.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Registracija";
+}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Registracija novega računa</h2>
+                    <form method="post">
+                        <div class="form-group mb-3">
+                            <label asp-for="RegisterInput.UporabniskoIme">Uporabniško ime</label>
+                            <input asp-for="RegisterInput.UporabniskoIme" class="form-control" />
+                            <span asp-validation-for="RegisterInput.UporabniskoIme" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="RegisterInput.Email">Email naslov</label>
+                            <input asp-for="RegisterInput.Email" class="form-control" />
+                            <span asp-validation-for="RegisterInput.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="RegisterInput.Geslo">Geslo</label>
+                            <input asp-for="RegisterInput.Geslo" type="password" class="form-control" />
+                            <span asp-validation-for="RegisterInput.Geslo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="RegisterInput.PotrdiGeslo">Potrdi geslo</label>
+                            <input asp-for="RegisterInput.PotrdiGeslo" type="password" class="form-control" />
+                            <span asp-validation-for="RegisterInput.PotrdiGeslo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="RegisterInput.StrokovnjakKoda">Koda za strokovnjaka (opcijsko)</label>
+                            <input asp-for="RegisterInput.StrokovnjakKoda" class="form-control" />
+                            <small class="form-text text-muted">Pustite prazno za običajno registracijo</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Registracija</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a asp-page="/Index">Nazaj na prijavo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

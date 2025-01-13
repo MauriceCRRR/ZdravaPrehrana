@@ -1,0 +1,111 @@
+﻿@page
+@model ZdravaPrehrana.Pages.Recepti.PodrobnostiModel
+@{
+    ViewData["Title"] = Model.Recept?.Naziv ?? "Podrobnosti recepta";
+}
+
+<div class="container">
+    @if (Model.Recept == null)
+    {
+        <div class="alert alert-warning">
+            Recept ne obstaja ali nimate dostopa do njega.
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-8">
+                <h2>@Model.Recept.Naziv</h2>
+                <div class="mb-4">
+                    <span class="badge bg-info me-2">
+                        <i class="bi bi-clock"></i> @Model.Recept.CasPriprave min
+                    </span>
+                    <span class="badge bg-warning me-2">
+                        <i class="bi bi-fire"></i> @Model.Recept.Kalorije kcal
+                    </span>
+                    @if (Model.Recept.JeJaven)
+                    {
+                        <span class="badge bg-success">Javni recept</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Zasebni recept</span>
+                    }
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Postopek priprave</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="white-space-pre-wrap">@Model.Recept.Postopek</p>
+                    </div>
+                </div>
+
+                @if (Model.JeAvtor)
+                {
+                    <div class="mb-4">
+                        <a asp-page="./Uredi" asp-route-id="@Model.Recept.Id"
+                           class="btn btn-primary me-2">Uredi recept</a>
+                        <button type="button" class="btn btn-danger"
+                                onclick="potrditeBrisanja(@Model.Recept.Id)">
+                            Izbriši recept
+                        </button>
+                    </div>
+                }
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Sestavine</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            @foreach (var receptSestavina in Model.Recept.ReceptSestavine)
+                            {
+                                <li class="list-group-item">
+                                    @receptSestavina.Sestavina.Naziv
+                                    <span class="float-end text-muted">
+                                        @receptSestavina.Kolicina @receptSestavina.Enota
+                                    </span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Informacije</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-2">
+                            <strong>Avtor:</strong> @Model.Recept.Avtor?.UporabniskoIme
+                        </p>
+                        <p class="mb-2">
+                            <strong>Ustvarjeno:</strong>
+                            @Model.Recept.DatumUstvarjanja.ToString("dd.MM.yyyy")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        function potrditeBrisanja(receptId) {
+            if (confirm('Ali ste prepričani, da želite izbrisati ta recept?')) {
+                window.location.href = `/Recepti/Izbrisi?id=${receptId}`;
+            }
+        }
+    </script>
+}
+
+<style>
+    .white-space-pre-wrap {
+        white-space: pre-wrap;
+    }
+</style>

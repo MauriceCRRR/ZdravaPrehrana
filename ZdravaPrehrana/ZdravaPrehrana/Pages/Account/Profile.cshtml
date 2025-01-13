@@ -1,0 +1,100 @@
+﻿@page
+@model ZdravaPrehrana.Pages.Account.ProfileModel
+@{
+    ViewData["Title"] = "Uredi profil";
+}
+<div class="container">
+    <h2 class="mb-4">@ViewData["Title"]</h2>
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="alert alert-info">@Model.StatusMessage</div>
+    }
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+                        <!-- Skrita polja za ohranjanje seznamov -->
+                        @foreach (var alergija in Model.Input.Alergije)
+                        {
+                            <input type="hidden" name="Input.Alergije" value="@alergija" />
+                        }
+                        @foreach (var omejitev in Model.Input.Omejitve)
+                        {
+                            <input type="hidden" name="Input.Omejitve" value="@omejitev" />
+                        }
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Visina" class="form-label"></label>
+                            <input asp-for="Input.Visina" class="form-control" />
+                            <span asp-validation-for="Input.Visina" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Teza" class="form-label"></label>
+                            <input asp-for="Input.Teza" class="form-control" />
+                            <span asp-validation-for="Input.Teza" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Alergije" class="form-label"></label>
+                            <div class="d-flex gap-2 mb-2">
+                                <input type="text" id="novaAlergija" name="novaAlergija" class="form-control"
+                                       placeholder="Vnesi alergijo..." />
+                                <button type="submit" class="btn btn-outline-primary" name="handler" value="DodajAlergijo">
+                                    Dodaj
+                                </button>
+                            </div>
+                            <div class="mt-2">
+                                @foreach (var alergija in Model.Input.Alergije)
+                                {
+                                    <span class="badge bg-primary me-2 mb-2">
+                                        @alergija
+                                        <button type="submit" asp-page-handler="OdstraniAlergijo"
+                                                asp-route-alergija="@alergija"
+                                                class="btn-close btn-close-white ms-2"
+                                                aria-label="Odstrani"></button>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Omejitve" class="form-label"></label>
+                            <div class="d-flex gap-2 mb-2">
+                                <input type="text" id="novaOmejitev" name="novaOmejitev" class="form-control"
+                                       placeholder="Vnesi omejitev..." />
+                                <button type="submit" class="btn btn-outline-primary" name="handler" value="DodajOmejitev">
+                                    Dodaj
+                                </button>
+                            </div>
+                            <div class="mt-2">
+                                @foreach (var omejitev in Model.Input.Omejitve)
+                                {
+                                    <span class="badge bg-primary me-2 mb-2">
+                                        @omejitev
+                                        <button type="submit" asp-page-handler="OdstraniOmejitev"
+                                                asp-route-omejitev="@omejitev"
+                                                class="btn-close btn-close-white ms-2"
+                                                aria-label="Odstrani"></button>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary" name="handler" value="Shrani">
+                                Shrani spremembe
+                            </button>
+                            <a href="/Dashboard" class="btn btn-outline-secondary ms-2">Nazaj</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

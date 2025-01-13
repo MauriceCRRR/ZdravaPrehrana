@@ -1,0 +1,28 @@
+﻿@page
+@model ZdravaPrehrana.Pages.Recepti.IzbrisiModel
+@{
+    ViewData["Title"] = "Izbriši recept";
+}
+
+<div class="container">
+    <h2>Brisanje recepta</h2>
+
+    @if (!Model.JePravilenLastnik)
+    {
+        <div class="alert alert-danger">
+            Nimate pravice za brisanje tega recepta.
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            Ali ste prepričani, da želite izbrisati recept "@Model.Recept?.Naziv"?
+        </div>
+
+        <form method="post">
+            <input type="hidden" asp-for="Recept.Id" />
+            <button type="submit" class="btn btn-danger">Izbriši</button>
+            <a asp-page="./Index" class="btn btn-secondary">Prekliči</a>
+        </form>
+    }
+</div>

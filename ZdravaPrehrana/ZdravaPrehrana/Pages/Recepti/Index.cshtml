@@ -1,0 +1,96 @@
+﻿@page
+@model ZdravaPrehrana.Pages.Recepti.IndexModel
+@{
+    ViewData["Title"] = "Recepti";
+}
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Recepti</h2>
+        <a asp-page="./Ustvari" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Nov recept
+        </a>
+    </div>
+
+    <!-- Iskalnik -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-8">
+                    <input type="text" name="iskanje" class="form-control"
+                           placeholder="Išči recepte..." value="@Model.IskalniNiz">
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-search"></i> Išči
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Seznam receptov -->
+    <div class="row">
+        @foreach (var recept in Model.Recepti)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@recept.Naziv</h5>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <i class="bi bi-clock"></i> @recept.CasPriprave min
+                                <span class="ms-2">
+                                    <i class="bi bi-fire"></i> @recept.Kalorije kcal
+                                </span>
+                            </small>
+                        </p>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                Avtor: @recept.Avtor?.UporabniskoIme
+                            </small>
+                        </p>
+                        @if (recept.JeJaven)
+                        {
+                            <span class="badge bg-success">Javni recept</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Zasebni recept</span>
+                        }
+                    </div>
+                    <div class="card-footer">
+                        <a asp-page="./Podrobnosti" asp-route-id="@recept.Id"
+                           class="btn btn-primary btn-sm">Podrobnosti</a>
+                        @if (Model.JeTrenutniUporabnik(recept.AvtorId))
+                        {
+                            <a asp-page="./Uredi" asp-route-id="@recept.Id"
+                               class="btn btn-outline-primary btn-sm">Uredi</a>
+                            <button type="button" class="btn btn-outline-danger btn-sm"
+                                    onclick="potrditeBrisanja(@recept.Id)">
+                                Izbriši
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (!Model.Recepti.Any())
+    {
+        <div class="alert alert-info">
+            Ni najdenih receptov.
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        function potrditeBrisanja(receptId) {
+            if (confirm('Ali ste prepričani, da želite izbrisati ta recept?')) {
+                window.location.href = `/Recepti/Izbrisi?id=${receptId}`;
+            }
+        }
+    </script>
+}

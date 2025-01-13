@@ -20,6 +20,26 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Account/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Account/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Cilji/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2lsamlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Dashboard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -28,12 +48,56 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Jedilnik/DeljeniJedilniki.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSmVkaWxuaWtcRGVsamVuaUplZGlsbmlraS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Jedilnik/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSmVkaWxuaWtcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/NakupovalniSeznami/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTmFrdXBvdmFsbmlTZXpuYW1pXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Nasveti/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTmFzdmV0aVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Nasveti/Strokovnjak.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTmFzdmV0aVxTdHJva292bmphay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Recepti/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVjZXB0aVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Recepti/Izbrisi.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVjZXB0aVxJemJyaXNpLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Recepti/Podrobnosti.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVjZXB0aVxQb2Ryb2Jub3N0aS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Recepti/Uredi.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVjZXB0aVxVcmVkaS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Recepti/Ustvari.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVjZXB0aVxVc3R2YXJpLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/VnosHranil/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVm5vc0hyYW5pbFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Maurice/Desktop/ZravaPreh/ZdravaPrehrana/ZdravaPrehrana/ZdravaPrehrana/Pages/_ViewImports.cshtml]

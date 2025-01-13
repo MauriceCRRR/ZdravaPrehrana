@@ -1,22 +1,68 @@
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public class PrehranskiCilji {
-	private double ciljnaTeza;
-	private int casovniOkvir;
-	private int dnevneKalorije;
+namespace ZdravaPrehrana.Entitete
+{
+    public class PrehranskiCilji
+    {
+        [Key]
+        public int Id { get; set; }
 
-	public bool NastaviCilj(ref Object podatki) {
-		throw new System.NotImplementedException("Not implemented");
-	}
-	public double PreveriNapredek() {
-		throw new System.NotImplementedException("Not implemented");
-	}
-	public void PosodobiCilj(ref Object podatki) {
-		throw new System.NotImplementedException("Not implemented");
-	}
+        [Required]
+        [Range(0, 500)]
+        public double CiljnaTeza { get; set; }
 
-	private UpravljalecCiljev upravljaCilj;
+        [Required]
+        public int CasovniOkvir { get; set; } // v dnevih
 
-	private Uporabnik ustvariCilj;
+        [Required]
+        [Range(0, 10000)]
+        public int DnevneKalorije { get; set; }
 
+        // Navigacijske lastnosti
+        public int UporabnikId { get; set; }
+        public virtual Uporabnik Uporabnik { get; set; }
+
+        // Metode
+        public bool NastaviCilj(PrehranskiCiljiPodatki podatki)
+        {
+            try
+            {
+                CiljnaTeza = podatki.CiljnaTeza;
+                CasovniOkvir = podatki.CasovniOkvir;
+                DnevneKalorije = podatki.DnevneKalorije;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public double PreveriNapredek()
+        {
+            // Implementacija preverjanja napredka
+            // Lahko dodate logiko za izraèun napredka glede na zaèetno težo in ciljno težo
+            return 0.0;
+        }
+
+        public void PosodobiCilj(PrehranskiCiljiPodatki podatki)
+        {
+            if (podatki != null)
+            {
+                CiljnaTeza = podatki.CiljnaTeza;
+                CasovniOkvir = podatki.CasovniOkvir;
+                DnevneKalorije = podatki.DnevneKalorije;
+            }
+        }
+    }
+
+    // Pomožni razred za prenos podatkov
+    public class PrehranskiCiljiPodatki
+    {
+        public double CiljnaTeza { get; set; }
+        public int CasovniOkvir { get; set; }
+        public int DnevneKalorije { get; set; }
+    }
 }

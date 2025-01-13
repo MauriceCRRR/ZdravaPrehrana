@@ -1,0 +1,110 @@
+﻿@page
+@model ZdravaPrehrana.Pages.VnosHranil.IndexModel
+@{
+    ViewData["Title"] = "Vnos hranil";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Dnevni vnos hranil</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="NoviVnos.Datum" class="form-label">Datum</label>
+                                <input asp-for="NoviVnos.Datum" type="date" class="form-control" />
+                                <span asp-validation-for="NoviVnos.Datum" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="NoviVnos.Kalorije" class="form-label">Kalorije (kcal)</label>
+                                <input asp-for="NoviVnos.Kalorije" type="number" class="form-control" />
+                                <span asp-validation-for="NoviVnos.Kalorije" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="NoviVnos.Beljakovine" class="form-label">Beljakovine (g)</label>
+                                <input asp-for="NoviVnos.Beljakovine" type="number" step="0.1" class="form-control" />
+                                <span asp-validation-for="NoviVnos.Beljakovine" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="NoviVnos.Mascobe" class="form-label">Maščobe (g)</label>
+                                <input asp-for="NoviVnos.Mascobe" type="number" step="0.1" class="form-control" />
+                                <span asp-validation-for="NoviVnos.Mascobe" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="NoviVnos.OgljikoviHidrati" class="form-label">Ogljikovi hidrati (g)</label>
+                                <input asp-for="NoviVnos.OgljikoviHidrati" type="number" step="0.1" class="form-control" />
+                                <span asp-validation-for="NoviVnos.OgljikoviHidrati" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Dodaj vnos</button>
+                    </form>
+                </div>
+            </div>
+
+            @if (Model.DnevniVnos != null)
+            {
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Današnji vnos</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6>Kalorije</h6>
+                                <p>@Model.DnevniVnos.Kalorije kcal</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>Beljakovine</h6>
+                                <p>@Model.DnevniVnos.Beljakovine g</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>Maščobe</h6>
+                                <p>@Model.DnevniVnos.Mascobe g</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h6>Ogljikovi hidrati</h6>
+                                <p>@Model.DnevniVnos.OgljikoviHidrati g</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Statistika</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.Statistika != null)
+                    {
+                        <p><strong>Povprečne vrednosti:</strong></p>
+                        <ul class="list-unstyled">
+                            <li>Kalorije: @Model.Statistika.PovprecneKalorije.ToString("F1") kcal</li>
+                            <li>Beljakovine: @Model.Statistika.PovprecneBeljakovine.ToString("F1") g</li>
+                            <li>Maščobe: @Model.Statistika.PovprecneMascobe.ToString("F1") g</li>
+                            <li>Ogljikovi hidrati: @Model.Statistika.PovprecniOgljikoviHidrati.ToString("F1") g</li>
+                        </ul>
+                        <p><strong>Število vnosov:</strong> @Model.Statistika.SteviloVnosov</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

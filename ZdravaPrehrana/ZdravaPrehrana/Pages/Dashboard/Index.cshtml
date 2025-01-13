@@ -1,0 +1,133 @@
+﻿@page
+@model DashboardModel
+@{
+    ViewData["Title"] = "Nadzorna plošča";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <h2>Pozdravljeni, @Model.UporabnikIme!</h2>
+            @if (Model.JeStrokovnjak)
+            {
+                <div class="alert alert-info">
+                    Prijavljeni ste kot strokovnjak prehrane
+                </div>
+            }
+            @if (Model.UporabnikProfil != null)
+            {
+                <div class="alert alert-light">
+                    <p class="mb-1">Vaši podatki:</p>
+                    <p class="mb-1">Višina: @Model.UporabnikProfil.Visina cm</p>
+                    <p class="mb-0">Teža: @Model.UporabnikProfil.Teza kg</p>
+                </div>
+            }
+        </div>
+    </div>
+
+    @if (Model.JeStrokovnjak)
+    {
+        <!-- Strokovnjak Dashboard -->
+        <div class="row mb-4">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Pregled vprašanj</h5>
+                        <p class="card-text flex-grow-1">Preglejte in odgovorite na vprašanja uporabnikov o prehrani.</p>
+                        <a asp-page="/Nasveti/Strokovnjak" class="btn btn-primary mt-auto">Preglej vprašanja</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Statistika odgovorov</h5>
+                        <p class="card-text flex-grow-1">Preglejte statistiko vaših odgovorov in aktivnosti.</p>
+                        <a asp-page="/Nasveti/StrokovnjakStatistika" class="btn btn-primary mt-auto">Preglej statistiko</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Prvi del - Glavni moduli -->
+    <div class="row mb-4">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Jedilnik</h5>
+                    <p class="card-text flex-grow-1">Načrtujte svoje obroke, preglejte recepte in sestavite tedenski jedilnik po svojih željah.</p>
+                    <a asp-page="/Jedilnik/Index" class="btn btn-primary mt-auto">Odpri jedilnik</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Prehranski cilji</h5>
+                    <p class="card-text flex-grow-1">Postavite in spremljajte svoje prehranske cilje, sledite napredku in prilagajajte načrt po potrebi.</p>
+                    <a asp-page="/PrehranskiCilji/Index" class="btn btn-primary mt-auto">Upravljaj cilje</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Vnos hranil</h5>
+                    <p class="card-text flex-grow-1">Beležite dnevni vnos hranil, spremljajte kalorije in hranilne vrednosti vaših obrokov.</p>
+                    <a asp-page="/VnosHranil/Index" class="btn btn-primary mt-auto">Spremljaj vnos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Drugi del - Dodatne funkcionalnosti -->
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Nakupovalni seznam</h5>
+                    <p class="card-text flex-grow-1">Ustvarite in upravljajte svoje nakupovalne sezname za vse potrebne sestavine.</p>
+                    <a asp-page="/NakupovalniSeznami/Index" class="btn btn-primary mt-auto">Ustvari seznam</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Profil in nastavitve</h5>
+                    <p class="card-text flex-grow-1">Upravljajte svoj profil, nastavite prehranske omejitve in alergije.</p>
+                    <a asp-page="/Account/Profile" class="btn btn-primary mt-auto">Uredi profil</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Prehranski nasveti</h5>
+                    <p class="card-text flex-grow-1">Prejemajte personalizirane nasvete za zdravo prehranjevanje.</p>
+                    <a asp-page="/Nasveti/Index" class="btn btn-primary mt-auto">Preberi nasvete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <form method="post" asp-page="/Account/Logout">
+                <button type="submit" class="btn btn-outline-danger">
+                    <i class="bi bi-box-arrow-right me-2"></i>Odjava
+                </button>
+            </form>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script>
+            document.querySelector('form[asp-page="/Account/Logout"]').addEventListener('submit', function(e) {
+                if (!confirm('Ali ste prepričani, da se želite odjaviti?')) {
+                    e.preventDefault();
+                }
+            });
+        </script>
+    }
+</div>
