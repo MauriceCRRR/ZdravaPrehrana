@@ -16,7 +16,7 @@ namespace ZdravaPrehrana.Tests
         private UpravljalecReceptov _upravljalec;
 
         [TestInitialize]
-        public void Setup()
+        public async Task Setup()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(databaseName: "TestDB_" + Guid.NewGuid().ToString())
@@ -32,15 +32,27 @@ namespace ZdravaPrehrana.Tests
                 Id = 1,
                 UporabniskoIme = "TestUser",
                 Email = "test@example.com",
-                Geslo = "TestGeslo123"
+                Geslo = "TestGeslo123",
+                Vloga = UporabniskaVloga.Uporabnik
             };
             _context.Uporabniki.Add(uporabnik);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+
+            // Preverimo če je uporabnik shranjen
+            var shranjeniUporabnik = await _context.Uporabniki.FindAsync(1);
+            if (shranjeniUporabnik == null)
+            {
+                throw new Exception("Uporabnik ni bil uspešno shranjen v setup fazi");
+            }
         }
 
         [TestMethod]
         public async Task Test_DodajRecept_ValidInput_CreatedSuccessfully()
         {
+            // Preveri če uporabnik obstaja
+            var uporabnik = await _context.Uporabniki.FindAsync(1);
+            Assert.IsNotNull(uporabnik, "Uporabnik mora obstajati pred testom");
+
             // Arrange
             var recept = new Recept
             {
@@ -49,16 +61,19 @@ namespace ZdravaPrehrana.Tests
                 Kalorije = 500,
                 CasPriprave = 30,
                 JeJaven = true,
-                AvtorId = 1,
-                DatumUstvarjanja = DateTime.Now
+                AvtorId = uporabnik.Id,
+                DatumUstvarjanja = DateTime.Now,
+                Avtor = uporabnik,
+                ReceptSestavine = new List<ReceptSestavina>()
             };
 
             // Act
-            var rezultat = await _upravljalec.DodajRecept(recept, 1);
+            var rezultat = await _upravljalec.DodajRecept(recept, uporabnik.Id);
 
             // Assert
             Assert.IsTrue(rezultat);
             var shranjeniRecept = await _context.Recepti
+                .Include(r => r.Avtor)
                 .FirstOrDefaultAsync(r => r.Naziv == "Test recept");
             Assert.IsNotNull(shranjeniRecept);
             Assert.AreEqual(recept.Naziv, shranjeniRecept.Naziv);
@@ -80,7 +95,8 @@ namespace ZdravaPrehrana.Tests
                 CasPriprave = 30,
                 JeJaven = true,
                 AvtorId = 1,
-                DatumUstvarjanja = DateTime.Now
+                DatumUstvarjanja = DateTime.Now,
+                ReceptSestavine = new List<ReceptSestavina>()
             };
 
             await _context.Recepti.AddAsync(javniRecept);
@@ -115,6 +131,9 @@ namespace ZdravaPrehrana.Tests
         public async Task Test_UrediRecept_ValidInput_UpdatedSuccessfully()
         {
             // Arrange
+            var uporabnik = await _context.Uporabniki.FindAsync(1);
+            Assert.IsNotNull(uporabnik, "Uporabnik mora obstajati pred testom");
+
             var recept = new Recept
             {
                 Naziv = "Originalni recept",
@@ -122,8 +141,10 @@ namespace ZdravaPrehrana.Tests
                 Kalorije = 300,
                 CasPriprave = 30,
                 JeJaven = false,
-                AvtorId = 1,
-                DatumUstvarjanja = DateTime.Now
+                AvtorId = uporabnik.Id,
+                DatumUstvarjanja = DateTime.Now,
+                Avtor = uporabnik,
+                ReceptSestavine = new List<ReceptSestavina>()
             };
 
             await _context.Recepti.AddAsync(recept);
@@ -137,12 +158,13 @@ namespace ZdravaPrehrana.Tests
                 Kalorije = 400,
                 CasPriprave = 45,
                 JeJaven = true,
-                AvtorId = 1,
-                DatumUstvarjanja = recept.DatumUstvarjanja
+                AvtorId = uporabnik.Id,
+                DatumUstvarjanja = recept.DatumUstvarjanja,
+                ReceptSestavine = new List<ReceptSestavina>()
             };
 
             // Act
-            var rezultat = await _upravljalec.UrediRecept(recept.Id, posodobljenRecept, 1);
+            var rezultat = await _upravljalec.UrediRecept(recept.Id, posodobljenRecept, uporabnik.Id);
 
             // Assert
             Assert.IsTrue(rezultat);
@@ -153,6 +175,9 @@ namespace ZdravaPrehrana.Tests
 
         private async Task DodajTestneRecepte()
         {
+            var uporabnik = await _context.Uporabniki.FindAsync(1);
+            Assert.IsNotNull(uporabnik, "Uporabnik mora obstajati pred testom");
+
             var recepti = new List<Recept>
             {
                 new Recept
@@ -163,7 +188,9 @@ namespace ZdravaPrehrana.Tests
                     CasPriprave = 30,
                     JeJaven = true,
                     AvtorId = 1,
-                    DatumUstvarjanja = DateTime.Now
+                    DatumUstvarjanja = DateTime.Now,
+                    Avtor = uporabnik,
+                    ReceptSestavine = new List<ReceptSestavina>()
                 },
                 new Recept
                 {
@@ -173,7 +200,9 @@ namespace ZdravaPrehrana.Tests
                     CasPriprave = 45,
                     JeJaven = false,
                     AvtorId = 1,
-                    DatumUstvarjanja = DateTime.Now
+                    DatumUstvarjanja = DateTime.Now,
+                    Avtor = uporabnik,
+                    ReceptSestavine = new List<ReceptSestavina>()
                 },
                 new Recept
                 {
@@ -183,7 +212,8 @@ namespace ZdravaPrehrana.Tests
                     CasPriprave = 60,
                     JeJaven = false,
                     AvtorId = 2,
-                    DatumUstvarjanja = DateTime.Now
+                    DatumUstvarjanja = DateTime.Now,
+                    ReceptSestavine = new List<ReceptSestavina>()
                 }
             };
 
