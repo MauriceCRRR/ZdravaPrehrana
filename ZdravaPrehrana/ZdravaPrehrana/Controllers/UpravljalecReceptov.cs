@@ -86,34 +86,42 @@ namespace ZdravaPrehrana.Controllers
                     noviRecept.AvtorId = avtorId;
                     noviRecept.DatumUstvarjanja = DateTime.Now;
 
-                    // Dodamo recept brez sestavin
+                    // Log recipe details
+                    _logger.LogInformation("Podrobnosti recepta: Naziv={Naziv}, AvtorId={AvtorId}, " +
+                        "Št.Sestavin={StSestavin}, CasPriprave={CasPriprave}, Kalorije={Kalorije}",
+                        noviRecept.Naziv, avtorId, noviRecept.ReceptSestavine?.Count ?? 0,
+                        noviRecept.CasPriprave, noviRecept.Kalorije);
+
+                    // First save the recipe
                     await _context.Recepti.AddAsync(noviRecept);
                     await _context.SaveChangesAsync();
 
-                    // Dodamo sestavine posebej
+                    // Now handle the ingredients
                     if (noviRecept.ReceptSestavine != null)
                     {
                         foreach (var receptSestavina in noviRecept.ReceptSestavine)
                         {
                             receptSestavina.ReceptId = noviRecept.Id;
-                            await _context.ReceptSestavine.AddAsync(receptSestavina);
+                            _logger.LogInformation("Dodajanje sestavine: {Naziv}, {Kolicina} {Enota}",
+                                receptSestavina.Sestavina?.Naziv, receptSestavina.Kolicina,
+                                receptSestavina.Enota);
                         }
                         await _context.SaveChangesAsync();
                     }
 
                     await transaction.CommitAsync();
+                    _logger.LogInformation("Recept uspešno dodan z ID: {Id}", noviRecept.Id);
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Napaka pri dodajanju recepta: {Message}", ex.Message);
                     await transaction.RollbackAsync();
                     throw;
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Napaka pri dodajanju recepta: {Message}", ex.Message);
+                _logger.LogError(ex, "Napaka pri dodajanju recepta");
                 return false;
             }
         }
@@ -143,34 +151,32 @@ namespace ZdravaPrehrana.Controllers
                     receptZaUrejanje.CasPriprave = posodobljeniRecept.CasPriprave;
                     receptZaUrejanje.JeJaven = posodobljeniRecept.JeJaven;
 
-                    // Najprej shranimo osnovne spremembe
-                    await _context.SaveChangesAsync();
-
-                    // Odstranimo stare sestavine
+                    // Remove existing ingredients
                     _context.ReceptSestavine.RemoveRange(receptZaUrejanje.ReceptSestavine);
                     await _context.SaveChangesAsync();
 
-                    // Dodamo nove sestavine
-                    foreach (var rs in posodobljeniRecept.ReceptSestavine)
+                    // Add updated ingredients
+                    receptZaUrejanje.ReceptSestavine = posodobljeniRecept.ReceptSestavine;
+                    foreach (var rs in receptZaUrejanje.ReceptSestavine)
                     {
                         rs.ReceptId = id;
-                        await _context.ReceptSestavine.AddAsync(rs);
                     }
-                    await _context.SaveChangesAsync();
 
+                    await _context.SaveChangesAsync();
                     await transaction.CommitAsync();
+
+                    _logger.LogInformation("Recept {Id} uspešno posodobljen", id);
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Napaka pri urejanju recepta: {Message}", ex.Message);
                     await transaction.RollbackAsync();
                     throw;
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Napaka pri urejanju recepta: {Message}", ex.Message);
+                _logger.LogError(ex, "Napaka pri urejanju recepta {Id}", id);
                 return false;
             }
         }
